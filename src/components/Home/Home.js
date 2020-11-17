@@ -1,9 +1,9 @@
 import React from 'react';
 import AllPlants from '../Plants/AllPlants';
 import './Home.css';
-const Home = () => {
+const Home = ({ plants }) => {
 	return (
-		<body>
+		<div>
 			<header>
 				<h1>Botanical Babble</h1>
 				{/* Hamburger Icon for nav links */}
@@ -12,7 +12,7 @@ const Home = () => {
 				{/* search bar */}
 				<AllPlants />
 			</main>
-		</body>
+		</div>
 	);
 };
 
