@@ -19,28 +19,33 @@ a place to look at and comment on plants!
 ## MVP
 
 - Mobile First design on front end.
-- Homepage with welcome blog.
-- NavBar with search, new plant button, planty query buttons(all and random), and plant talk.
-- When you search for a plant or click random plant, display plant details.
+- Homepage with welcome and all plants.
+- NavBar New plant button(Modal)
 - When you click new plant button, require certain details, but not all, and add to db.
 - When you're looking at plant details, be able to update or detele them.
-- Plant talk: mostly just a forum style page, contains a submission form, and displays the form submissions, as comments, newest to oldest.
+- Associating comments with plants
 
 ## Strech Goals
 
+- Animated SVG image for the homepage.
+- New Nav Bar Elements: Random Plant, Plant General Discussion, Favorite Plants, Search Bar, About Us as Coders.
 - Success/Failure messages upon submission of new plant or updates of existing plant.
-- Associating comments with plants?
+- When you search for a plant or click random plant, display plant details
 - add a photo URL as a string(update).
 - add a photo as a file upload
 - Favorite your plants
-- Like buttons
 - Share buttons
+- Plant talk: mostly just a forum style page, contains a submission form, and displays the form submissions, as comments, newest to oldest.
 
 ## Gold
 
 ## Silver
 
 ## Bronze
+
+## OG Component Heirachy
+
+![image](https://user-images.githubusercontent.com/68978118/99417393-1a483c80-28b7-11eb-8083-abe17c91e554.png)
 
 ## Wireframes
 
