@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const plantsData = require('./components/Plants/test.json');
+
 
 ReactDOM.render(
 	<React.StrictMode>
