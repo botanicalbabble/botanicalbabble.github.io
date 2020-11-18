@@ -1,7 +1,7 @@
 import React from 'react';
 import Home from './components/Home/Home';
-import AllPlants from './components/Plants/AllPlants';
-import PlantDetails from './components/Plants/PlantDetails';
+
+import PlantDetails from './components/PlantDetails/PlantDetails';
 import { Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 

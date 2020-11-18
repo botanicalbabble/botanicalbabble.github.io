@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './AllPlants.css'
 import Axios from 'axios'
-import PlantCard from './PlantCard'
+import PlantCard from '../PlantCard/PlantCard'
 // import data from './test.json';
 // import newData from '../Plants/seedData-1.json';
 
