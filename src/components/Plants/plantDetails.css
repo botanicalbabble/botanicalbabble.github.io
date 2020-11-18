@@ -1,0 +1,13 @@
+.container {
+    border: .5rem solid black;
+    text-align: center;
+    background-image: url('../../marble.png');
+}
+
+.thumbnail {
+    width: 18.75rem;
+    height: 15.6rem;
+    justify-content: center;
+    border: .5rem solid black;
+    margin: .6rem;
+}
