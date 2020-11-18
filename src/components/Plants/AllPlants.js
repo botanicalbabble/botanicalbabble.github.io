@@ -18,14 +18,13 @@ const AllPlants = () => {
 		function getPlants() {
 			Axios(url)
 			.then((data) => {
-				console.log(data)
 				setPlants(data.data)
-			})
+			}) 
 			.catch((error) => {
 				setError(null)
 			})
 		
-	}, [url, setPlants, plants])
+	}, [])
 
 
 
@@ -46,7 +45,7 @@ const AllPlants = () => {
 		
 		<div> 
 			{plants.map((plant) => (
-				<PlantCard plant={plant} key={plant.slug} /> 
+				<PlantCard plant={plant} key={plant._id} /> 
 			))}
 		</div>
 

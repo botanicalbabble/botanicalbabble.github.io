@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card'
+import { NavLink } from 'react-router-dom'
 
 
 
@@ -7,7 +8,7 @@ import Card from 'react-bootstrap/Card'
 const PlantCard = ({ plant }) => {
     return (
         <div>
-
+        <NavLink to={'/plant/' + plant._id}>
             <Card className='text-center card-temp'>
                 <Card.Title> {plant.common_name} </Card.Title>
                 <Card.Img 
@@ -22,7 +23,7 @@ const PlantCard = ({ plant }) => {
                          Scientific Name: {plant.scientific_name} 
                 </Card.Text>    
             </Card>
-            
+        </NavLink>
         </div>
     );
 };
