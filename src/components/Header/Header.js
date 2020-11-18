@@ -11,6 +11,25 @@ const Header = () => {
 	const handleClose = () => setForm(false);
 	const handleShow = () => setForm(true);
 
+	const initialState = {
+		name: '',
+		family: '',
+		commonName: '',
+		genus: '',
+		scientificName: '',
+	};
+
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		setFormState(initialState);
+	};
+
+	const handleChange = (event) => {
+		setFormState({ ...formState, [event.target.id]: event.target.value });
+	};
+
+	const [formState, setFormState] = useState(initialState);
+
 	return (
 		<>
 			<Navbar as='header' sticky='top' bg='light' expand='lg'>
@@ -40,20 +59,55 @@ const Header = () => {
 				</Modal.Header>
 				<Modal.Body>
 					<form action='submit'>
+						{/* Name */}
 						<label htmlFor='name'>Name:</label>
-						<input type='text' name='' id='name' placeholder='Name' />
+						<input
+							type='text'
+							name=''
+							id='name'
+							placeholder='Name'
+							onChange={handleChange}
+						/>
 						<br />
+						{/* Family */}
 						<label htmlFor='family'>Family:</label>
-						<input type='text' name='' id='family' placeholder='Family' />
+						<input
+							type='text'
+							name=''
+							id='family'
+							placeholder='Family'
+							onChange={handleChange}
+						/>
 						<br />
-						<label htmlFor='common-name'>Common Name:</label>
-						<input type='text' name='' id='' placeholder='Family Common Name' />
+						{/* Common Name */}
+						<label htmlFor='commonName'>Common Name:</label>
+						<input
+							type='text'
+							name=''
+							id='commonName'
+							placeholder='Family Common Name'
+							onChange={handleChange}
+						/>
 						<br />
+						{/* Genus */}
 						<label htmlFor='genus'>Genus:</label>
-						<input type='text' name='' id='' placeholder='Genus' />
+						<input
+							type='text'
+							name=''
+							id='genus'
+							placeholder='Genus'
+							onChange={handleChange}
+						/>
 						<br />
-						<label htmlFor='scientific-name'>Scientific Name:</label>
-						<input type='text' name='' id='' placeholder='Scientific Name' />
+						{/* Scientific Name */}
+						<label htmlFor='scientificName'>Scientific Name:</label>
+						<input
+							type='text'
+							name=''
+							id='scientificName'
+							placeholder='Scientific Name'
+							onChange={handleChange}
+						/>
 					</form>
 				</Modal.Body>
 				<Modal.Footer>
