@@ -18,14 +18,14 @@ a place to look at and comment on plants!
 
 ## MVP
 
-- Mobile First design on front end.
-- Homepage with welcome and all plants.
+- When you're looking at plant details, be able to update or detele them.
 - NavBar New plant button(Modal)
 - When you click new plant button, require certain details, but not all, and add to db.
-- When you're looking at plant details, be able to update or detele them.
 - Associating comments with plants
+- Homepage with welcome and all plants.
+- Mobile First design on front end.
 
-## Strech Goals
+## Stretch Goals
 
 - Animated SVG image for the homepage.
 - New Nav Bar Elements: Random Plant, Plant General Discussion, Favorite Plants, Search Bar, About Us as Coders.
