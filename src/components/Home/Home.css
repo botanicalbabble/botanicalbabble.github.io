@@ -1,3 +1,7 @@
-header {
+main {
+	border: 0.5rem solid black;
 	text-align: center;
+	background-image: url('../../marble.png');
+	background-size: cover;
+	height: 100vh;
 }
