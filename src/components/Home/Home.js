@@ -10,7 +10,9 @@ const Home = ({ plants }) => {
 			</header>
 			<main>
 				{/* search bar */}
-				<AllPlants />
+				<AllPlants
+				path='/'
+				exact />
 			</main>
 		</div>
 	);
