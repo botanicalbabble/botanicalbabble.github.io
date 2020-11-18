@@ -1,29 +1,24 @@
 import React from 'react';
 import Home from './components/Home/Home';
-import AllPlants from './components/Plants/AllPlants'
-import PlantDetails from './components/Plants/PlantDetails'
-import { Route } from 'react-router-dom'
-
+import AllPlants from './components/Plants/AllPlants';
+import PlantDetails from './components/Plants/PlantDetails';
+import { Route } from 'react-router-dom';
+import Header from './components/Header/Header';
 
 const App = () => {
-	
-
-
-
-
-
 	return (
 		<div>
-			<header></header>
-
+			<header>
+				<Header />
+			</header>
 			<main>
-				<Route 
+				<Route
 					path='/'
 					exact
 					render={(routerProps) => {
-						return <Home match={routerProps.match} />
+						return <Home match={routerProps.match} />;
 					}}
-				/> 
+				/>
 
 				<Route
 					path='/plant/:_id'
@@ -33,14 +28,12 @@ const App = () => {
 								history={routerProps.history}
 								match={routerProps.match}
 							/>
-						)
+						);
 					}}
 				/>
-
-				
 			</main>
 		</div>
-	)
+	);
 };
 
 export default App;
