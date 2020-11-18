@@ -66,8 +66,8 @@ const Header = () => {
 				<Navbar.Toggle aria-controls='basic-navbar-nav' />
 				<Navbar.Collapse id='basic-navbar-nav'>
 					<Nav className='mr-auto'>
-						<Nav.Link href='/plants'>All Plants</Nav.Link>
-						<Nav.Link href='/random'>Random Plant</Nav.Link>
+						<Nav.Link href='/allplants'>All Plants</Nav.Link>
+						<Nav.Link href='/randomplant'>Random Plant</Nav.Link>
 						<Nav.Link onClick={handleShow}>New Plant</Nav.Link>
 					</Nav>
 					<Form inline>
