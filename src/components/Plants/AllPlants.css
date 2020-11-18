@@ -1,4 +1,11 @@
-img {
+.card-image {
     width: 100px;
     height: 100px;
+}
+
+.card-temp { 
+    /* border-style: solid;
+    border-color: black; */
+    border: solid black .1rem;
+    margin: 10px;
 }
