@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
 
 const Header = () => {
 	const [form, setForm] = useState(false);
@@ -19,9 +20,31 @@ const Header = () => {
 		scientificName: '',
 	};
 
+	// const handlePost = function () {
+	// 	Axios({
+	// 		method: 'post',
+	// 		url: 'https://botanical-babble.herokuapp.com/api/plants',
+	// 		data: {
+	// 			name: 'Plant Name',
+	// 			family: 'Tree family',
+	// 			commonName: 'Tree',
+	// 			genus: 'Green Trees',
+	// 			scientificName: 'Science Tree',
+	// 		},
+	// 	});
+	// };
+
+	const handlePost2 = function () {
+		const common_name = 'plant'
+		Axios.post('https://botanical-babble.herokuapp.com/api/plants', {
+			common_name
+		}).then((response) => console.log(response))
+	}
+
 	const handleSubmit = (event) => {
-		event.preventDefault();
-		setFormState(initialState);
+		// event.preventDefault();
+		// setFormState(initialState);
+		handlePost2();
 	};
 
 	const handleChange = (event) => {
@@ -114,7 +137,12 @@ const Header = () => {
 					<Button variant='secondary' onClick={handleClose}>
 						Close
 					</Button>
-					<Button variant='primary' onClick={handleClose}>
+					<Button
+						variant='primary'
+						onClick={() => {
+							handleClose();
+							handleSubmit();
+						}}>
 						Save Changes
 					</Button>
 				</Modal.Footer>
