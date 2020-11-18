@@ -36,9 +36,26 @@ const Header = () => {
 			</Navbar>
 			<Modal show={form} onHide={handleClose} centered size='md'>
 				<Modal.Header>
-					<Modal.Title>Modal heading</Modal.Title>
+					<Modal.Title>Create A New Plant</Modal.Title>
 				</Modal.Header>
-				<Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+				<Modal.Body>
+					<form action='submit'>
+						<label htmlFor='name'>Name:</label>
+						<input type='text' name='' id='name' placeholder='Name' />
+						<br />
+						<label htmlFor='family'>Family:</label>
+						<input type='text' name='' id='family' placeholder='Family' />
+						<br />
+						<label htmlFor='common-name'>Common Name:</label>
+						<input type='text' name='' id='' placeholder='Family Common Name' />
+						<br />
+						<label htmlFor='genus'>Genus:</label>
+						<input type='text' name='' id='' placeholder='Genus' />
+						<br />
+						<label htmlFor='scientific-name'>Scientific Name:</label>
+						<input type='text' name='' id='' placeholder='Scientific Name' />
+					</form>
+				</Modal.Body>
 				<Modal.Footer>
 					<Button variant='secondary' onClick={handleClose}>
 						Close
