@@ -1,5 +1,5 @@
 import React from 'react';
-import AllPlants from '../Plants/AllPlants';
+
 import './Home.css';
 const Home = ({ plants }) => {
 	return (
