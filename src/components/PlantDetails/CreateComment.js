@@ -1,52 +1,77 @@
-import React, { useState } from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Axios from 'axios'
-import { apiUrl } from '../../config'
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
+import { apiUrl } from '../../config';
 
 const CreateComment = ({ plant }) => {
-    const [show, setShow] = useState(false)
-    
-    const plantIdForm = plant._id
-    // const plantIdForm = `5fb5c274157393df03a59179`
-
-    // const initialState = { 
-      
-    // }
+	// States
+	const [show, setShow] = useState(false);
 	const [formState, setFormState] = useState({
 		comment_name: '',
 		comment_body: '',
-        // plant_id: plantIdForm,
-        plantId: ''
-	})
 
-	const handleClose = () => setShow(false)
-	const handleShow = () => setShow(true)
+		plantId: '',
+	});
+	const [commentList, setCommentList] = useState('');
 
+	// Variables
+	const plantIdForm = plant._id;
+
+	// Functions // Handlers
+	const handleClose = () => setShow(false);
+	const handleShow = () => setShow(true);
 	const handleChange = (event, plant_id) => {
-        setFormState({ ...formState, [event.target.id]: event.target.value, plantId: plantIdForm })
-        
+		setFormState({
+			...formState,
+			[event.target.id]: event.target.value,
+			plantId: plantIdForm,
+		});
+	};
+	const handlePostComment = function () {
+		const data = formState;
+		Axios.post(
+			// 'https://botanical-babble.herokuapp.com/api/comments',
+			`${apiUrl}/comments`,
+			data
+		).then((response) => console.log(response));
+	};
+
+	useEffect(() => {
+		Axios.get(`${apiUrl}/comments`)
+		.then((res) => {
+			setCommentList(res)
+		})
+		.catch(console.error)
+	}, []);
+
+	let commentsList = plant.comments.map((comment) => {
+		return (
+			<div className='container'>
+				<ul>
+					<li>{comment.comment_name}</li>
+					<li>{comment.comment_body}</li>
+					<li>{comment.createdAt}</li>
+				</ul>
+			</div>
+		);
+	});
+
+	// Console.logs
+	console.log(plant.comments);
+
+	if (!plant) {
+		return null;
 	}
-
-
-    const handlePostComment = function () {
-			const data = formState
-			Axios.post(
-                // 'https://botanical-babble.herokuapp.com/api/comments',
-                `${apiUrl}/comments`,
-				data
-			).then((response) => console.log(response))
-        }
-        
-
-    
-
-
 
 	return (
 		<>
-			<p>This is where shit will be comments</p>
-			<p>{plant.rank}</p>
+			<div className='container'>
+				<h2>Comment Section</h2>
+				<div>
+					<p>{commentsList}</p>
+				</div>
+			</div>
 
 			<Button variant='primary' onClick={handleShow}>
 				Create a comment
@@ -62,8 +87,8 @@ const CreateComment = ({ plant }) => {
 						<input
 							type='text'
 							id='comment_name'
-                            placeholder='Enter your name, b'
-                            onChange={handleChange}
+							placeholder='Enter your name, b'
+							onChange={handleChange}
 						/>
 						<input
 							type='textarea'
@@ -78,21 +103,20 @@ const CreateComment = ({ plant }) => {
 					<Button variant='secondary' onClick={handleClose}>
 						Close
 					</Button>
-			
 
 					<Button
-                        variant='primary'
-                        type='submit'
+						variant='primary'
+						type='submit'
 						onClick={() => {
-							handleClose()
-							handlePostComment()
+							handleClose();
+							handlePostComment();
 						}}>
 						Save Changes
 					</Button>
 				</Modal.Footer>
 			</Modal>
 		</>
-	)
-}
+	);
+};
 
-export default CreateComment
+export default CreateComment;
