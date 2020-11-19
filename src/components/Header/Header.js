@@ -15,30 +15,16 @@ const Header = () => {
 	const initialState = {
 		name: '',
 		family: '',
-		commonName: '',
+		common_name: '',
 		genus: '',
 		scientificName: '',
+		slug: 'hello slug'
 	};
 
-	// const handlePost = function () {
-	// 	Axios({
-	// 		method: 'post',
-	// 		url: 'https://botanical-babble.herokuapp.com/api/plants',
-	// 		data: {
-	// 			name: 'Plant Name',
-	// 			family: 'Tree family',
-	// 			commonName: 'Tree',
-	// 			genus: 'Green Trees',
-	// 			scientificName: 'Science Tree',
-	// 		},
-	// 	});
-	// };
+	const [formState, setFormState] = useState(initialState)
 
 	const handlePost2 = function () {
-		const data = {
-			common_name: 'Planty',
-			slug: 'planties slug',
-		};
+		const data = formState
 		Axios.post(
 			'https://botanical-babble.herokuapp.com/api/plants',
 			data
@@ -55,7 +41,7 @@ const Header = () => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
 
-	const [formState, setFormState] = useState(initialState);
+
 
 	return (
 		<>
@@ -107,11 +93,11 @@ const Header = () => {
 						/>
 						<br />
 						{/* Common Name */}
-						<label htmlFor='commonName'>Common Name:</label>
+						<label htmlFor='common_name'>Common Name:</label>
 						<input
 							type='text'
 							name=''
-							id='commonName'
+							id='common_name'
 							placeholder='Family Common Name'
 							onChange={handleChange}
 						/>
@@ -127,11 +113,11 @@ const Header = () => {
 						/>
 						<br />
 						{/* Scientific Name */}
-						<label htmlFor='scientificName'>Scientific Name:</label>
+						<label htmlFor='scientific_name'>Scientific Name:</label>
 						<input
 							type='text'
 							name=''
-							id='scientificName'
+							id='scientific_name'
 							placeholder='Scientific Name'
 							onChange={handleChange}
 						/>

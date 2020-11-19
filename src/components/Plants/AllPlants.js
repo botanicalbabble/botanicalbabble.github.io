@@ -5,29 +5,26 @@ import PlantCard from '../PlantCard/PlantCard'
 // import data from './test.json';
 // import newData from '../Plants/seedData-1.json';
 
+import { apiUrl } from '../../config'
+
 const AllPlants = () => {
-
-
 	const [plants, setPlants] = useState([])
 	const [error, setError] = useState(false)
 
+	//$ heroku logs --tail --app botanical-babble
 
-	const url = `https://botanical-babble.herokuapp.com/api/plants`
+	// const url = `https://botanical-babble.herokuapp.com/api/plants`
+	const url = `${apiUrl}/plants`
 
-	useEffect(
-		function getPlants() {
-			Axios(url)
+	useEffect(function getPlants() {
+		Axios(url)
 			.then((data) => {
 				setPlants(data.data)
-			}) 
+			})
 			.catch((error) => {
 				setError(null)
 			})
-		
 	}, [])
-
-
-
 
 	// let renderPlant = plants.map((plant) => {
 	// 	return (
@@ -42,17 +39,13 @@ const AllPlants = () => {
 
 	return (
 		<div>
-		
-		<div> 
-			{plants.map((plant) => (
-				<PlantCard plant={plant} key={plant._id} /> 
-			))}
+			<div>
+				{plants.map((plant) => (
+					<PlantCard plant={plant} key={plant._id} />
+				))}
+			</div>
 		</div>
-
-
-
-		</div>
-	);
+	)
 };
 
 export default AllPlants;
