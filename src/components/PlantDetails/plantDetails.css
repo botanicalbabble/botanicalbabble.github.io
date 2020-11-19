@@ -1,13 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow&family=Merriweather+Sans&display=swap');
+
+* {
+	justify-content: center;
+	align-items: center;
+	font-family: 'Barlow', sans-serif;
+}
+h1 {
+	font-family: 'Merriweather Sans', sans-serif;
+}
 .container {
-    border: .5rem solid black;
-    text-align: center;
-    background-image: url('../../marble.png');
+	border: 0.3rem solid black;
+	border-radius: 0.25rem;
+	text-align: center;
+	background-color: white;
+	padding: auto;
+	margin: 4rem auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	/* background-image: url('../../marble.png'); */
 }
 
 .thumbnail {
-    width: 18.75rem;
-    height: 15.6rem;
-    justify-content: center;
-    border: .5rem solid black;
-    margin: .6rem;
+	display: block;
+	width: 18.75rem;
+	height: 15.6rem;
+	border: 0.2rem solid black;
+	border-radius: 0.25rem;
+	margin: 1rem auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.button-join {
+	display: inline-block;
+	margin: 1rem;
+	padding: 0.25rem 1.25rem;
+	background-color: #577e3a;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	cursor: pointer;
+	border: 0.15rem solid black;
+	border-radius: 0.25rem;
+}
+
+.button-join:hover {
+	background-color: #79af50;
+}
+.button:active {
+	transform: translateY(1px);
+}
+
+.button-fav {
+	display: inline-block;
+	margin: 1rem auto;
+	padding: 0.25rem 1.25rem;
+	background-color: #798c97;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	cursor: pointer;
+	border: 0.15rem solid black;
+	border-radius: 0.25rem;
+}
+
+.button-fav:hover {
+	background-color: #a9b5bc;
 }
