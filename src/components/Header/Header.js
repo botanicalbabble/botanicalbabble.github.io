@@ -35,10 +35,13 @@ const Header = () => {
 	// };
 
 	const handlePost2 = function () {
-		const common_name = 'plant'
-		Axios.post('https://botanical-babble.herokuapp.com/api/plants', {
-			common_name
-		}).then((response) => console.log(response))
+		const data = {
+			common_name: 'Planty',
+			slug: 'planties slug'
+		}
+		Axios.post('https://botanical-babble.herokuapp.com/api/plants', 
+			data
+		).then((response) => console.log(response))
 	}
 
 	const handleSubmit = (event) => {
