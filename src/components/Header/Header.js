@@ -37,12 +37,13 @@ const Header = () => {
 	const handlePost2 = function () {
 		const data = {
 			common_name: 'Planty',
-			slug: 'planties slug'
-		}
-		Axios.post('https://botanical-babble.herokuapp.com/api/plants', 
+			slug: 'planties slug',
+		};
+		Axios.post(
+			'https://botanical-babble.herokuapp.com/api/plants',
 			data
-		).then((response) => console.log(response))
-	}
+		).then((response) => console.log(response));
+	};
 
 	const handleSubmit = (event) => {
 		// event.preventDefault();
