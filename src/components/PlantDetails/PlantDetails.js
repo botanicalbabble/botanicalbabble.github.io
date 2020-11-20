@@ -66,7 +66,7 @@ const PlantDetails = ({ match }) => {
 						<label htmlFor='name'>Name:</label>
 						<input
 							type='text'
-							id='name'
+							id='common_name'
 							placeholder={plant.common_name}
 							onChange={handleChange}
 						/>
