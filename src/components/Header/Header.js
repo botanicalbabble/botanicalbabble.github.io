@@ -6,9 +6,12 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
+import { apiUrl } from '../../config';
+import { Redirect } from 'react-router-dom';
 
 const Header = () => {
 	const [form, setForm] = useState(false);
+	const [newPlantId, setNewPlantId] = useState(null);
 	const handleClose = () => setForm(false);
 	const handleShow = () => setForm(true);
 
@@ -18,17 +21,17 @@ const Header = () => {
 		common_name: '',
 		genus: '',
 		scientificName: '',
-		slug: 'hello slug'
+		slug: 'hello slug',
 	};
 
-	const [formState, setFormState] = useState(initialState)
+	const [formState, setFormState] = useState(initialState);
 
 	const handlePost2 = function () {
-		const data = formState
-		Axios.post(
-			'https://botanical-babble.herokuapp.com/api/plants',
-			data
-		).then((response) => console.log(response));
+		const data = formState;
+		Axios.post(`${apiUrl}/plants`, data).then((response) => {
+			console.log(response);
+			setNewPlantId(response.data._id);
+		});
 	};
 
 	const handleSubmit = (event) => {
@@ -40,8 +43,9 @@ const Header = () => {
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
-
-
+	if (newPlantId) {
+		return <Redirect to={`/plant/${newPlantId}`} />;
+	}
 
 	return (
 		<>
