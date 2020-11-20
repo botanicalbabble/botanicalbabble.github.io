@@ -33,7 +33,6 @@ const PlantDetails = ({ match }) => {
 			})
 			.catch((error) => {});
 	}, []);
-
 	//Put request to update to specific plant id page
 	const handlePut = () => {
 		const data = formState;
@@ -41,6 +40,7 @@ const PlantDetails = ({ match }) => {
 			console.log(response);
 			setPlant(response.data);
 		});
+
 	};
 
 	// To submit changes to your plant details
@@ -53,8 +53,10 @@ const PlantDetails = ({ match }) => {
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
-	const renderModal = () => {
-		return (
+
+
+	return (
+		<>
 			<Modal show={form} onHide={handleClose} centered size='md'>
 				<Modal.Header>
 					<Modal.Title>Edit Plant</Modal.Title>
@@ -159,9 +161,11 @@ const PlantDetails = ({ match }) => {
 				<button onClick={handleShow}>Edit plant</button>
 			</section>
 			<section>
-				<CreateComment plant={plant} />
+				<CreateComment plant={plant} setPlant={setPlant} />
 			</section>
 		</>
+		//Created button above to edit and update plant details
+
 	);
 };
 
