@@ -10,7 +10,6 @@ import { apiUrl } from '../../config';
 const PlantDetails = ({ match }) => {
 	const plantId = match.params._id;
 	const [plant, setPlant] = useState([]);
-	// const url = `https://botanical-babble.herokuapp.com/api/plants/${plantId}`
 	const url = `${apiUrl}/plants/${plantId}`;
 
 	const initialState = {
@@ -26,7 +25,6 @@ const PlantDetails = ({ match }) => {
 	const handleClose = () => setForm(false);
 	const handleShow = () => setForm(true);
 	const [formState, setFormState] = useState(initialState);
-	const [show, setShow] = useState(false);
 
 	useEffect(function getPlant() {
 		Axios(url)
@@ -35,21 +33,14 @@ const PlantDetails = ({ match }) => {
 			})
 			.catch((error) => {});
 	}, []);
-	if (!plant) {
-		return null;
-	}
-
-	const handlePut = function () {
+	//Put request to update to specific plant id page
+	const handlePut = () => {
 		const data = formState;
+		Axios.put(url, data).then((response) => {
+			console.log(response);
+			setPlant(response.data);
+		});
 
-		// slug: "This is updated"
-
-		//Put request to update to specific plant id page
-		Axios.put(
-			`https://botanical-babble.herokuapp.com/api/plants/${plantId}`,
-
-			data
-		).then((response) => console.log(response));
 	};
 
 	// To submit changes to your plant details
@@ -62,6 +53,7 @@ const PlantDetails = ({ match }) => {
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
+
 
 	return (
 		<>
@@ -76,39 +68,8 @@ const PlantDetails = ({ match }) => {
 						<label htmlFor='name'>Name:</label>
 						<input
 							type='text'
-							name={plant.common_name}
-							id='name'
-							placeholder={plant.common_name}
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Family */}
-						<label htmlFor='family'>Family:</label>
-						<input
-							type='text'
-							name=''
-							id='family'
-							placeholder='Family'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Common Name */}
-						<label htmlFor='common_name'>Common Name:</label>
-						<input
-							type='text'
-							name=''
 							id='common_name'
-							placeholder='Family Common Name'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Genus */}
-						<label htmlFor='genus'>Genus:</label>
-						<input
-							type='text'
-							name=''
-							id='genus'
-							placeholder='Genus'
+							placeholder={plant.common_name}
 							onChange={handleChange}
 						/>
 						<br />
@@ -116,9 +77,35 @@ const PlantDetails = ({ match }) => {
 						<label htmlFor='scientific_name'>Scientific Name:</label>
 						<input
 							type='text'
-							name=''
 							id='scientific_name'
-							placeholder='Scientific Name'
+							placeholder={plant.scientific_name}
+							onChange={handleChange}
+						/>
+						<br />
+						{/* Common Name */}
+						<label htmlFor='family_common_name'>Common Family Name:</label>
+						<input
+							type='text'
+							id='family_common_name'
+							placeholder={plant.family_common_name}
+							onChange={handleChange}
+						/>
+						<br />
+						{/* Family */}
+						<label htmlFor='family'>Family:</label>
+						<input
+							type='text'
+							id='family'
+							placeholder={plant.family}
+							onChange={handleChange}
+						/>
+						<br />
+						{/* Genus */}
+						<label htmlFor='genus'>Genus:</label>
+						<input
+							type='text'
+							id='genus'
+							placeholder={plant.genus}
 							onChange={handleChange}
 						/>
 					</form>
@@ -133,13 +120,17 @@ const PlantDetails = ({ match }) => {
 						onClick={() => {
 							handleClose();
 							handleSubmit();
-							// handlePut()
 						}}>
 						update changes
 					</Button>
 				</Modal.Footer>
 			</Modal>
-
+		);
+	};
+	console.log(plant);
+	return (
+		<>
+			{renderModal()}
 			<section className='container'>
 				<h1>{plant.common_name}</h1>
 				<h4>
@@ -153,10 +144,10 @@ const PlantDetails = ({ match }) => {
 				<button className='button button-join'>Join Babble!</button>
 				<button className='button button-fav'>Add to Favs</button>
 				<p>
-					<u>Family Name</u>: {plant.family_common_name}
+					<u>Common Family Name</u>: {plant.family_common_name}
 				</p>
 				<p>
-					<u>Scientific Family Name</u>: {plant.family}
+					<u>Family</u>: {plant.family}
 				</p>
 				<p>
 					<u>Genus</u>: {plant.genus}
@@ -174,6 +165,7 @@ const PlantDetails = ({ match }) => {
 			</section>
 		</>
 		//Created button above to edit and update plant details
+
 	);
 };
 
