@@ -1,7 +1,18 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import Axios from 'axios';
 import './Home.css';
-const Home = ({ plants }) => {
+import Carousel from 'react-bootstrap/Carousel';
+import { apiUrl } from '../../config';
+
+const url = `${apiUrl}/plants`;
+const Home = () => {
+	const [data, setData] = useState([]);
+	Axios(url)
+		.then((res) => {
+			setData(res.data);
+		})
+		.catch((error) => {});
+
 	return (
 		<div>
 			<main>
@@ -22,7 +33,29 @@ const Home = ({ plants }) => {
 					<h4>Go to Random Plants to pull up a random plant</h4>
 				</div>
 				<div>
-					<h4>Create a new plant to join the fun</h4>
+					{console.log(data)}
+					<Carousel style={{ minHeight: '90vh' }}>
+						{data.map((plant) => {
+							return (
+								<Carousel.Item key={plant.id} style={{ maxHeight: '90vh' }}>
+									<img
+										className='d-plant w-100'
+										style={{
+											height: '90vh',
+											width: '100%',
+											objectFit: 'cover',
+											overflow: 'hidden',
+										}}
+										src={plant.image_url}
+										alt={plant.scientific_name}
+									/>
+									<Carousel.Caption>
+										<p>{plant.common_name}</p>
+									</Carousel.Caption>
+								</Carousel.Item>
+							);
+						})}
+					</Carousel>
 				</div>
 			</main>
 		</div>
