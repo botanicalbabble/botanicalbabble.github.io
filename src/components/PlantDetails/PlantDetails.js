@@ -1,19 +1,17 @@
-import React, { useState, useEffect } from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Axios from 'axios'
-import './plantDetails.css'
-import CreateComment from './CreateComment'
-import { apiUrl } from '../../config'
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
+import './plantDetails.css';
+import CreateComment from './CreateComment';
+import { apiUrl } from '../../config';
 
 //Created a container to hold individual plant profile
 const PlantDetails = ({ match }) => {
-
-
-	const plantId = match.params._id
-	const [plant, setPlant] = useState([])
+	const plantId = match.params._id;
+	const [plant, setPlant] = useState([]);
 	// const url = `https://botanical-babble.herokuapp.com/api/plants/${plantId}`
-	const url = `${apiUrl}/plants/${plantId}`
+	const url = `${apiUrl}/plants/${plantId}`;
 
 	const initialState = {
 		name: '',
@@ -22,48 +20,48 @@ const PlantDetails = ({ match }) => {
 		common_name: '',
 		genus: '',
 		scientific_name: '',
-	}
+	};
 
-	const [form, setForm] = useState(false)
-	const handleClose = () => setForm(false)
-	const handleShow = () => setForm(true)
-	const [formState, setFormState] = useState(initialState)
-	const [show, setShow] = useState(false)
+	const [form, setForm] = useState(false);
+	const handleClose = () => setForm(false);
+	const handleShow = () => setForm(true);
+	const [formState, setFormState] = useState(initialState);
+	const [show, setShow] = useState(false);
 
 	useEffect(function getPlant() {
 		Axios(url)
 			.then((data) => {
-				setPlant(data.data)
+				setPlant(data.data);
 			})
-			.catch((error) => {})
-	}, [])
+			.catch((error) => {});
+	}, []);
 	if (!plant) {
-		return null
+		return null;
 	}
 
 	const handlePut = function () {
-		const data = formState
-			
-			// slug: "This is updated"
-		
+		const data = formState;
+
+		// slug: "This is updated"
+
 		//Put request to update to specific plant id page
 		Axios.put(
 			`https://botanical-babble.herokuapp.com/api/plants/${plantId}`,
-			
+
 			data
-		).then((response) => console.log(response))
-	}
+		).then((response) => console.log(response));
+	};
 
 	// To submit changes to your plant details
 	const handleSubmit = (event) => {
 		// event.preventDefault()
 		// setFormState(initialState);
-		handlePut()
-	}
+		handlePut();
+	};
 
 	const handleChange = (event) => {
-		setFormState({ ...formState, [event.target.id]: event.target.value })
-	}
+		setFormState({ ...formState, [event.target.id]: event.target.value });
+	};
 
 	return (
 		<>
@@ -73,7 +71,6 @@ const PlantDetails = ({ match }) => {
 				</Modal.Header>
 
 				<Modal.Body>
-		
 					<form action='submit'>
 						{/* Name */}
 						<label htmlFor='name'>Name:</label>
@@ -134,8 +131,8 @@ const PlantDetails = ({ match }) => {
 					<Button
 						variant='primary'
 						onClick={() => {
-							handleClose()
-							handleSubmit()
+							handleClose();
+							handleSubmit();
 							// handlePut()
 						}}>
 						update changes
@@ -172,14 +169,12 @@ const PlantDetails = ({ match }) => {
 				</p>
 				<button onClick={handleShow}>Edit plant</button>
 			</section>
-			<section> 
-				
-				
-				<CreateComment plant={plant} /> 
-			</section> 
+			<section>
+				<CreateComment plant={plant} setPlant={setPlant} />
+			</section>
 		</>
 		//Created button above to edit and update plant details
-	)
-}
+	);
+};
 
-export default PlantDetails
+export default PlantDetails;
