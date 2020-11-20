@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import { apiUrl } from '../../config';
 
 const url = `${apiUrl}/plants`;
+
+
 const Home = () => {
 	const [data, setData] = useState([]);
-	Axios(url)
-		.then((res) => {
-			setData(res.data);
-		})
-		.catch((error) => {});
+
+	useEffect(() => {
+		Axios(url)
+			.then((res) => {
+				setData(res.data);
+			})
+			.catch((error) => {});
+
+	}, [])
+
 
 	return (
 		<div>
@@ -33,11 +40,10 @@ const Home = () => {
 					<h4>Go to Random Plants to pull up a random plant</h4>
 				</div>
 				<div>
-					{console.log(data)}
 					<Carousel style={{ minHeight: '90vh' }}>
 						{data.map((plant) => {
 							return (
-								<Carousel.Item key={plant.id} style={{ maxHeight: '90vh' }}>
+								<Carousel.Item key={plant._id} style={{ maxHeight: '90vh' }}>
 									<img
 										className='d-plant w-100'
 										style={{
