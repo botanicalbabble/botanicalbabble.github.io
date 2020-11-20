@@ -40,7 +40,6 @@ const PlantDetails = ({ match }) => {
 			console.log(response);
 			setPlant(response.data);
 		});
-
 	};
 
 	// To submit changes to your plant details
@@ -53,10 +52,8 @@ const PlantDetails = ({ match }) => {
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
-
-
-	return (
-		<>
+	const renderModal = () => {
+		return (
 			<Modal show={form} onHide={handleClose} centered size='md'>
 				<Modal.Header>
 					<Modal.Title>Edit Plant</Modal.Title>
@@ -127,7 +124,7 @@ const PlantDetails = ({ match }) => {
 			</Modal>
 		);
 	};
-	console.log(plant);
+
 	return (
 		<>
 			{renderModal()}
@@ -164,8 +161,6 @@ const PlantDetails = ({ match }) => {
 				<CreateComment plant={plant} setPlant={setPlant} />
 			</section>
 		</>
-		//Created button above to edit and update plant details
-
 	);
 };
 
