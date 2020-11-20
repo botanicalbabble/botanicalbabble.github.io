@@ -4,20 +4,22 @@ import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import { apiUrl } from '../../config';
 
-const CreateComment = ({ plant }) => {
+
+const commentsUrl = `${apiUrl}/comments`;
+const plantsUrl = `${apiUrl}/plants`;
+
+const CreateComment = ({ plant, setPlant }) => {
+
 	// States
 	const [show, setShow] = useState(false);
 	const [formState, setFormState] = useState({
 		comment_name: '',
 		comment_body: '',
-
 		plantId: '',
 	});
-	const [commentList, setCommentList] = useState('');
 
 	// Variables
 	const plantIdForm = plant._id;
-
 	// Functions // Handlers
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -32,44 +34,40 @@ const CreateComment = ({ plant }) => {
 		const data = formState;
 		Axios.post(
 			// 'https://botanical-babble.herokuapp.com/api/comments',
-			`${apiUrl}/comments`,
+
+			commentsUrl,
 			data
-		).then((response) => console.log(response));
+		)
+			.then((response) => console.log(response))
+			.then(() => {
+				fetch(plantsUrl + '/' + plantIdForm)
+					.then((res) => res.json())
+					.then((res) => {
+						setPlant(res);
+					})
+					.catch(console.error);
+			});
 	};
 
-	useEffect(() => {
-		Axios.get(`${apiUrl}/comments`)
-		.then((res) => {
-			setCommentList(res)
-		})
-		.catch(console.error)
-	}, []);
-
-	let commentsList = plant.comments.map((comment) => {
-		return (
-			<div className='container'>
-				<ul>
-					<li>{comment.comment_name}</li>
-					<li>{comment.comment_body}</li>
-					<li>{comment.createdAt}</li>
-				</ul>
-			</div>
-		);
-	});
-
-	// Console.logs
-	console.log(plant.comments);
-
-	if (!plant) {
-		return null;
-	}
 
 	return (
 		<>
 			<div className='container'>
 				<h2>Comment Section</h2>
 				<div>
-					<p>{commentsList}</p>
+
+					{plant.comments?.map((comment) => {
+						return (
+							<div className='container' key={comment._id}>
+								<ul>
+									<li>{comment.comment_name}</li>
+									<li>{comment.comment_body}</li>
+									<li>{comment.createdAt}</li>
+								</ul>
+							</div>
+						);
+					})}
+
 				</div>
 			</div>
 
