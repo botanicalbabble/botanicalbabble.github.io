@@ -75,9 +75,9 @@ const Header = () => {
 					<Modal.Title>Create A New Plant</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<form action='submit' onSubmit={handleSubmit}>
+					{/* <form action='submit' onSubmit={handleSubmit}>
 						{/* Name */}
-						<label htmlFor='name'>Name:</label>
+					{/* <label htmlFor='name'>Name:</label>
 						<input
 							type='text'
 							name=''
@@ -86,9 +86,9 @@ const Header = () => {
 							onSubmit={handleChange}
 							required
 						/>
-						<br />
-						{/* Family */}
-						<label htmlFor='family'>Family:</label>
+						<br /> */}
+					{/* Family */}
+					{/* <label htmlFor='family'>Family:</label>
 						<input
 							type='text'
 							name=''
@@ -97,9 +97,9 @@ const Header = () => {
 							onSubmit={handleChange}
 							required
 						/>
-						<br />
-						{/* Common Name */}
-						<label htmlFor='common_name'>Common Name:</label>
+						<br /> */}
+					{/* Common Name */}
+					{/* <label htmlFor='common_name'>Common Name:</label>
 						<input
 							type='text'
 							name=''
@@ -108,9 +108,9 @@ const Header = () => {
 							onSubmit={handleChange}
 							required
 						/>
-						<br />
-						{/* Genus */}
-						<label htmlFor='genus'>Genus:</label>
+						<br /> */}
+					{/* Genus */}
+					{/* <label htmlFor='genus'>Genus:</label>
 						<input
 							type='text'
 							name=''
@@ -119,9 +119,9 @@ const Header = () => {
 							onSubmit={handleChange}
 							required
 						/>
-						<br />
-						{/* Scientific Name */}
-						<label htmlFor='scientific_name'>Scientific Name:</label>
+						<br /> */}
+					{/* Scientific Name */}
+					{/* <label htmlFor='scientific_name'>Scientific Name:</label>
 						<input
 							type='text'
 							name=''
@@ -130,19 +130,90 @@ const Header = () => {
 							onSubmit={handleChange}
 							required
 						/>
-					</form>
+					</form> */}
+					<Form action='submit' onSubmit={handleSubmit}>
+						{/* Plant Name */}
+						<Form.Group>
+							<Form.Label>Plant Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='name'
+								placeholder='ex. Evergreen oak'
+								onChange={handleChange}
+								required
+							/>
+							<Form.Text className='text-muted'>
+								{/* We'll never share your plant with anyone else. */}
+							</Form.Text>
+						</Form.Group>
+
+						{/* Scientific Name */}
+						<Form.Group>
+							<Form.Label>Scientific Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='scientificName'
+								placeholder='ex. Quercus rotundifolia'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* Family Common Name */}
+						<Form.Group>
+							<Form.Label>Family Common Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='common_name'
+								placeholder='ex. Beech family'
+								onChange={handleChange}
+							/>
+							<Form.Text className='text-muted'>* Optional</Form.Text>
+						</Form.Group>
+
+						{/* Family */}
+						<Form.Group>
+							<Form.Label>Family</Form.Label>
+							<Form.Control
+								type='text'
+								id='family'
+								placeholder='ex. Fagaceae'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* Genus */}
+						<Form.Group>
+							<Form.Label>Genus</Form.Label>
+							<Form.Control
+								type='text'
+								id='genus'
+								placeholder='ex. Quercus'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* <Form.Group>
+							<Form.Check type='checkbox' label='Check me out' />
+						</Form.Group> */}
+						<Button variant='primary' type='submit' onClick={handleSubmit}>
+							Submit
+						</Button>
+						<Button variant='secondary' onClick={handleClose}>
+							Close
+						</Button>
+					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					<Button variant='secondary' onClick={handleClose}>
-						Close
-					</Button>
-					<Button
+					{/* <Button
 						variant='primary'
 						onClick={() => {
-							handleClose();
+							// handleClose();
 						}}>
 						Save Changes
-					</Button>
+					</Button> */}
 				</Modal.Footer>
 			</Modal>
 		</>
