@@ -49,7 +49,7 @@ const Header = () => {
 
 	return (
 		<>
-			<Navbar as='header' sticky='top' bg='light' expand='lg'>
+			<Navbar as='header' sticky='top' bg='light' expand='lg' variant='light' >
 				<Navbar.Brand href='/'>
 					<img
 						src='https://i.imgur.com/bpNKU65.png'
@@ -64,10 +64,10 @@ const Header = () => {
 						<Nav.Link href='/randomplant'>Random Plant</Nav.Link>
 						<Nav.Link onClick={handleShow}>New Plant</Nav.Link>
 					</Nav>
-					<Form inline>
+					{/* <Form inline>
 						<FormControl type='text' placeholder='Search' className='mr-sm-2' />
 						<Button variant='outline-success'>Search</Button>
-					</Form>
+					</Form> */}
 				</Navbar.Collapse>
 			</Navbar>
 			<Modal show={form} onHide={handleClose} centered size='md'>
@@ -75,62 +75,6 @@ const Header = () => {
 					<Modal.Title>Create A New Plant</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					{/* <form action='submit' onSubmit={handleSubmit}>
-						{/* Name */}
-					{/* <label htmlFor='name'>Name:</label>
-						<input
-							type='text'
-							name=''
-							id='name'
-							placeholder='Name'
-							onSubmit={handleChange}
-							required
-						/>
-						<br /> */}
-					{/* Family */}
-					{/* <label htmlFor='family'>Family:</label>
-						<input
-							type='text'
-							name=''
-							id='family'
-							placeholder='Family'
-							onSubmit={handleChange}
-							required
-						/>
-						<br /> */}
-					{/* Common Name */}
-					{/* <label htmlFor='common_name'>Common Name:</label>
-						<input
-							type='text'
-							name=''
-							id='common_name'
-							placeholder='Family Common Name'
-							onSubmit={handleChange}
-							required
-						/>
-						<br /> */}
-					{/* Genus */}
-					{/* <label htmlFor='genus'>Genus:</label>
-						<input
-							type='text'
-							name=''
-							id='genus'
-							placeholder='Genus'
-							onSubmit={handleChange}
-							required
-						/>
-						<br /> */}
-					{/* Scientific Name */}
-					{/* <label htmlFor='scientific_name'>Scientific Name:</label>
-						<input
-							type='text'
-							name=''
-							id='scientific_name'
-							placeholder='Scientific Name'
-							onSubmit={handleChange}
-							required
-						/>
-					</form> */}
 					<Form action='submit' onSubmit={handleSubmit}>
 						{/* Plant Name */}
 						<Form.Group>
@@ -207,13 +151,7 @@ const Header = () => {
 					</Form>
 				</Modal.Body>
 				<Modal.Footer>
-					{/* <Button
-						variant='primary'
-						onClick={() => {
-							// handleClose();
-						}}>
-						Save Changes
-					</Button> */}
+
 				</Modal.Footer>
 			</Modal>
 		</>
