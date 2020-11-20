@@ -75,7 +75,7 @@ const Header = () => {
 					<Modal.Title>Create A New Plant</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<form action='submit'>
+					<form action='submit' onSubmit={handleSubmit}>
 						{/* Name */}
 						<label htmlFor='name'>Name:</label>
 						<input
@@ -83,7 +83,8 @@ const Header = () => {
 							name=''
 							id='name'
 							placeholder='Name'
-							onChange={handleChange}
+							onSubmit={handleChange}
+							required
 						/>
 						<br />
 						{/* Family */}
@@ -93,7 +94,8 @@ const Header = () => {
 							name=''
 							id='family'
 							placeholder='Family'
-							onChange={handleChange}
+							onSubmit={handleChange}
+							required
 						/>
 						<br />
 						{/* Common Name */}
@@ -103,7 +105,8 @@ const Header = () => {
 							name=''
 							id='common_name'
 							placeholder='Family Common Name'
-							onChange={handleChange}
+							onSubmit={handleChange}
+							required
 						/>
 						<br />
 						{/* Genus */}
@@ -113,7 +116,8 @@ const Header = () => {
 							name=''
 							id='genus'
 							placeholder='Genus'
-							onChange={handleChange}
+							onSubmit={handleChange}
+							required
 						/>
 						<br />
 						{/* Scientific Name */}
@@ -123,7 +127,8 @@ const Header = () => {
 							name=''
 							id='scientific_name'
 							placeholder='Scientific Name'
-							onChange={handleChange}
+							onSubmit={handleChange}
+							required
 						/>
 					</form>
 				</Modal.Body>
@@ -135,7 +140,6 @@ const Header = () => {
 						variant='primary'
 						onClick={() => {
 							handleClose();
-							handleSubmit();
 						}}>
 						Save Changes
 					</Button>
