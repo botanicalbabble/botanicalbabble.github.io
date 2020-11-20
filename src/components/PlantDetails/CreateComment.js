@@ -4,10 +4,12 @@ import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import { apiUrl } from '../../config';
 
+
 const commentsUrl = `${apiUrl}/comments`;
 const plantsUrl = `${apiUrl}/plants`;
 
 const CreateComment = ({ plant, setPlant }) => {
+
 	// States
 	const [show, setShow] = useState(false);
 	const [formState, setFormState] = useState({
@@ -18,7 +20,6 @@ const CreateComment = ({ plant, setPlant }) => {
 
 	// Variables
 	const plantIdForm = plant._id;
-
 	// Functions // Handlers
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
@@ -33,6 +34,7 @@ const CreateComment = ({ plant, setPlant }) => {
 		const data = formState;
 		Axios.post(
 			// 'https://botanical-babble.herokuapp.com/api/comments',
+
 			commentsUrl,
 			data
 		)
@@ -47,11 +49,13 @@ const CreateComment = ({ plant, setPlant }) => {
 			});
 	};
 
+
 	return (
 		<>
 			<div className='container'>
 				<h2>Comment Section</h2>
 				<div>
+
 					{plant.comments?.map((comment) => {
 						return (
 							<div className='container' key={comment._id}>
@@ -63,6 +67,7 @@ const CreateComment = ({ plant, setPlant }) => {
 							</div>
 						);
 					})}
+
 				</div>
 			</div>
 
