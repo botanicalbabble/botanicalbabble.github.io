@@ -4,16 +4,17 @@ import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import { apiUrl } from '../../config';
 
+const url = 'http://localhost:8000/api/comments';
+
 const CreateComment = ({ plant }) => {
 	// States
 	const [show, setShow] = useState(false);
 	const [formState, setFormState] = useState({
 		comment_name: '',
 		comment_body: '',
-
 		plantId: '',
 	});
-	const [commentList, setCommentList] = useState('');
+	const [commentList, setCommentList] = useState([]);
 
 	// Variables
 	const plantIdForm = plant._id;
@@ -32,20 +33,34 @@ const CreateComment = ({ plant }) => {
 		const data = formState;
 		Axios.post(
 			// 'https://botanical-babble.herokuapp.com/api/comments',
-			`${apiUrl}/comments`,
+			url,
 			data
 		).then((response) => console.log(response));
 	};
-
 	useEffect(() => {
-		Axios.get(`${apiUrl}/comments`)
-		.then((res) => {
-			setCommentList(res)
-		})
-		.catch(console.error)
+		fetch(url)
+			.then((res) => res.json())
+			.then((res) => {
+				setCommentList(res);
+			})
+			.catch(console.error);
 	}, []);
 
-	let commentsList = plant.comments.map((comment) => {
+	// useEffect(() => {
+	// 	Axios.get(`${apiUrl}/comments`)
+	// 		.then((res) => {
+	// 			setCommentList(res);
+	// 		})
+	// 		.catch(console.error);
+	// }, []);
+
+	// Console.logs
+	console.log(plant.comments);
+
+	if (!commentList) {
+		return null;
+	}
+	let commentsList = plant.comments?.map((comment) => {
 		return (
 			<div className='container'>
 				<ul>
@@ -56,13 +71,6 @@ const CreateComment = ({ plant }) => {
 			</div>
 		);
 	});
-
-	// Console.logs
-	console.log(plant.comments);
-
-	if (!plant) {
-		return null;
-	}
 
 	return (
 		<>
