@@ -3,7 +3,6 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import { apiUrl } from '../../config';
@@ -21,23 +20,17 @@ const Header = () => {
 		common_name: '',
 		genus: '',
 		scientificName: '',
-		slug: 'hello slug',
+		image_url: 'https://i.imgur.com/iw0FTRY.png',
 	};
 
 	const [formState, setFormState] = useState(initialState);
 
-	const handlePost2 = function () {
+	const handleSubmit = function () {
 		const data = formState;
 		Axios.post(`${apiUrl}/plants`, data).then((response) => {
 			console.log(response);
 			setNewPlantId(response.data._id);
 		});
-	};
-
-	const handleSubmit = (event) => {
-		// event.preventDefault();
-		// setFormState(initialState);
-		handlePost2();
 	};
 
 	const handleChange = (event) => {
@@ -70,7 +63,7 @@ const Header = () => {
 					</Form> */}
 				</Navbar.Collapse>
 			</Navbar>
-			<Modal show={form} onHide={handleClose} centered size='md'>
+			<Modal show={form} onHide={handleClose} centered size='lg'>
 				<Modal.Header>
 					<Modal.Title>Create A New Plant</Modal.Title>
 				</Modal.Header>
@@ -138,11 +131,7 @@ const Header = () => {
 								required
 							/>
 						</Form.Group>
-
-						{/* <Form.Group>
-							<Form.Check type='checkbox' label='Check me out' />
-						</Form.Group> */}
-						<Button variant='primary' type='submit' onClick={handleSubmit}>
+						<Button variant='primary' type='submit' onClick={handleSubmit} style={{margin: '1rem'}}>
 							Submit
 						</Button>
 						<Button variant='secondary' onClick={handleClose}>
