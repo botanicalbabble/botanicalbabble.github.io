@@ -52,6 +52,7 @@ const PlantDetails = ({ match }) => {
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
+
 	const renderModal = () => {
 		return (
 			<Modal show={form} onHide={handleClose} centered size='md'>
@@ -139,7 +140,10 @@ const PlantDetails = ({ match }) => {
 					alt={plant.common_name}
 				/>
 				<button className='button button-join'>Join Babble!</button>
-				<button className='button button-fav'>Add to Favs</button>
+
+				<button onClick={handleShow} className='button button-fav'>
+					Edit Plant
+				</button>
 				<p>
 					<u>Common Family Name</u>: {plant.family_common_name}
 				</p>
@@ -155,7 +159,6 @@ const PlantDetails = ({ match }) => {
 					aute irure dolor in reprehenderit in voluptate velit esse cillum
 					dolore eu fugiat nulla pariatur.
 				</p>
-				<button onClick={handleShow}>Edit plant</button>
 			</section>
 			<section>
 				<CreateComment plant={plant} setPlant={setPlant} />
