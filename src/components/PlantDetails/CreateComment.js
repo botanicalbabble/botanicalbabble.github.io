@@ -88,7 +88,10 @@ const CreateComment = ({ plant, setPlant }) => {
 									</li>
 									<hr />
 									<li>{comment.comment_body}</li>
-									<li>{moment().format('MMMM Do YYYY, h:mm a')} </li>
+									<li>
+										{moment(comment.createdAt).fromNow()}
+										{/* or we can do the formal format of when the comment was made .format('MMMM Do YYYY, h:mm a') */}
+									</li>
 								</ul>
 							</div>
 						);
