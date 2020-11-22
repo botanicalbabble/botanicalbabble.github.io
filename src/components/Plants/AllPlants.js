@@ -1,42 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import './AllPlants.css'
-import Axios from 'axios'
-import PlantCard from '../PlantCard/PlantCard'
+import './AllPlants.css';
+import Axios from 'axios';
+import PlantCard from '../PlantCard/PlantCard';
+import { apiUrl } from '../../config';
 // import data from './test.json';
 // import newData from '../Plants/seedData-1.json';
 
-import { apiUrl } from '../../config'
+//$ heroku logs --tail --app botanical-babble
 
 const AllPlants = () => {
-	const [plants, setPlants] = useState([])
-	const [error, setError] = useState(false)
 
-	//$ heroku logs --tail --app botanical-babble
+	//// -- Variables -- ////
 
+	const url = `${apiUrl}/plants`;
 	// const url = `https://botanical-babble.herokuapp.com/api/plants`
-	const url = `${apiUrl}/plants`
+	
+	
+	//// -- States -- ////
+
+	const [plants, setPlants] = useState([]);
+	const [error, setError] = useState(false);
+
+	//// -- useEffect(s) -- ////
 
 	useEffect(function getPlants() {
 		Axios(url)
 			.then((data) => {
-				setPlants(data.data)
+				setPlants(data.data);
 			})
 			.catch((error) => {
-				setError(null)
-			})
-	}, [])
+				setError(null);
+			});
+	}, []);
 
-	// let renderPlant = plants.map((plant) => {
-	// 	return (
-	// 		// <Link key={plant.id} to={}`}>
-	// 		<div >
-	// 			{/* {plant.common_name}
-	// 			<img src={plant.image_url} alt='' /> */}
-	// 		</div>
-	// 		// </Link>
-	// 	);
-	// });
 
+	//// -- Page Content -- ////
 	return (
 		<div>
 			<div>
@@ -45,7 +43,7 @@ const AllPlants = () => {
 				))}
 			</div>
 		</div>
-	)
+	);
 };
 
 export default AllPlants;

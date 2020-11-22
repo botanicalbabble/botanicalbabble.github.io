@@ -9,10 +9,9 @@ import { apiUrl } from '../../config';
 import { Redirect } from 'react-router-dom';
 
 const Header = () => {
-	const [form, setForm] = useState(false);
-	const [newPlantId, setNewPlantId] = useState(null);
-	const handleClose = () => setForm(false);
-	const handleShow = () => setForm(true);
+	//// -- Variables -- ////
+
+	//// -- States -- ////
 
 	const initialState = {
 		name: '',
@@ -22,9 +21,17 @@ const Header = () => {
 		scientificName: '',
 		image_url: 'https://i.imgur.com/iw0FTRY.png',
 	};
-
+	const [form, setForm] = useState(false);
+	const [newPlantId, setNewPlantId] = useState(null);
 	const [formState, setFormState] = useState(initialState);
 
+	//// -- Functions / Handlers -- ////
+
+	const handleClose = () => setForm(false);
+	const handleShow = () => setForm(true);
+	const handleChange = (event) => {
+		setFormState({ ...formState, [event.target.id]: event.target.value });
+	};
 	const handleSubmit = function () {
 		const data = formState;
 		Axios.post(`${apiUrl}/plants`, data).then((response) => {
@@ -33,16 +40,15 @@ const Header = () => {
 		});
 	};
 
-	const handleChange = (event) => {
-		setFormState({ ...formState, [event.target.id]: event.target.value });
-	};
 	if (newPlantId) {
 		return <Redirect to={`/plant/${newPlantId}`} />;
 	}
 
+	//// -- Page Content -- ////
+
 	return (
 		<>
-			<Navbar as='header' sticky='top' bg='light' expand='lg' variant='light' >
+			<Navbar as='header' sticky='top' bg='light' expand='lg' variant='light'>
 				<Navbar.Brand href='/'>
 					<img
 						src='https://i.imgur.com/bpNKU65.png'
@@ -131,7 +137,11 @@ const Header = () => {
 								required
 							/>
 						</Form.Group>
-						<Button variant='primary' type='submit' onClick={handleSubmit} style={{margin: '1rem'}}>
+						<Button
+							variant='primary'
+							type='submit'
+							onClick={handleSubmit}
+							style={{ margin: '1rem' }}>
 							Submit
 						</Button>
 						<Button variant='secondary' onClick={handleClose}>
@@ -139,9 +149,7 @@ const Header = () => {
 						</Button>
 					</Form>
 				</Modal.Body>
-				<Modal.Footer>
-
-				</Modal.Footer>
+				<Modal.Footer></Modal.Footer>
 			</Modal>
 		</>
 	);
