@@ -3,16 +3,15 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import CreateComment from './CreateComment';
-import { apiUrl } from '../../config';
+// import { apiUrl } from '../../config';
 import './plantDetails.css';
 
-
 const PlantDetails = ({ match }) => {
-
 	//// -- Variables -- ////
-	
+	const url = `https://botanical-babble.herokuapp.com/api/plants`;
+
 	const plantId = match.params._id;
-	const url = `${apiUrl}/plants/${plantId}`;
+	const plantUrl = `${url}/plants/${plantId}`;
 
 	//// -- States -- ////
 	const initialState = {
@@ -40,7 +39,7 @@ const PlantDetails = ({ match }) => {
 	//Put request to update to specific plant id page
 	const handlePut = () => {
 		const data = formState;
-		Axios.put(url, data).then((response) => {
+		Axios.put(plantUrl, data).then((response) => {
 			console.log(response);
 			setPlant(response.data);
 		});
@@ -125,11 +124,12 @@ const PlantDetails = ({ match }) => {
 
 	// -- useEffect(s) -- //
 	useEffect(function getPlant() {
-		Axios(url)
+		Axios(plantUrl)
 			.then((data) => {
 				setPlant(data.data);
 			})
 			.catch((error) => {});
+		//eslint-disable-next-line
 	}, []);
 
 	//// -- Page Content -- ////

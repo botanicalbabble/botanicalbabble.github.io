@@ -11,8 +11,8 @@ import { apiUrl } from '../../config';
 const AllPlants = () => {
 	//// -- Variables -- ////
 
-	const url = `${apiUrl}/plants`;
-	// const url = `https://botanical-babble.herokuapp.com/api/plants`
+	// const url = `${apiUrl}/plants`;
+	const url = `https://botanical-babble.herokuapp.com/api/plants`
 
 	//// -- States -- ////
 

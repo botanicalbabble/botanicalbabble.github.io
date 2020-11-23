@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
-import { apiUrl } from '../../config';
+// import { apiUrl } from '../../config';
 import moment from 'moment';
 import './CreateComment.css';
 
 const CreateComment = ({ plant, setPlant }) => {
 
 	//// -- Variables -- ////
-	
+	const url = `https://botanical-babble.herokuapp.com/api/plants`;
+
 	const plantId = plant._id;
-	const commentsUrl = `${apiUrl}/comments`;
-	const plantsUrl = `${apiUrl}/plants`;
+	const commentsUrl = `${url}/comments`;
+	const plantsUrl = `${url}/plants`;
 
 	//// -- States -- ////
 
@@ -53,7 +54,7 @@ const CreateComment = ({ plant, setPlant }) => {
 			});
 	};
 	const handleDeleteComment = function (event, commentId) {
-		const deleteUrl = `${commentsUrl}/${plantId}/${commentId}`;
+		const deleteUrl = `${url}/${plantId}/${commentId}`;
 		Axios.delete(
 			// 'https://botanical-babble.herokuapp.com/api/comments',
 			deleteUrl

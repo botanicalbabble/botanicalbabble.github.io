@@ -5,7 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
-import { apiUrl } from '../../config';
+// import { apiUrl } from '../../config';
 import { Redirect } from 'react-router-dom';
 
 const Header = () => {
@@ -32,9 +32,11 @@ const Header = () => {
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
+	const url = `https://botanical-babble.herokuapp.com/api/plants`;
+
 	const handleSubmit = function () {
 		const data = formState;
-		Axios.post(`${apiUrl}/plants`, data).then((response) => {
+		Axios.post(`${url}/plants`, data).then((response) => {
 			console.log(response);
 			setNewPlantId(response.data._id);
 		});
