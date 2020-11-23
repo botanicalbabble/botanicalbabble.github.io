@@ -38,7 +38,6 @@ const RandomPlant = ({ match }) => {
 	const handlePut = () => {
 		const data = formState;
 		Axios.put(url, data).then((response) => {
-			console.log(response);
 			setPlant(response.data);
 		});
 	};

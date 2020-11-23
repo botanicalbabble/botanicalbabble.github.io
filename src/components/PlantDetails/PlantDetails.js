@@ -3,16 +3,15 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import CreateComment from './CreateComment';
-import { apiUrl } from '../../config';
+// import { apiUrl } from '../../config';
 import './plantDetails.css';
 
-
 const PlantDetails = ({ match }) => {
-
 	//// -- Variables -- ////
-	
-	const plantId = match.params._id;
-	const url = `${apiUrl}/plants/${plantId}`;
+	const url = `https://botanical-babble.herokuapp.com/api`
+
+	const plantId = match.params._id
+	const plantUrl = `${url}/plants/${plantId}`
 
 	//// -- States -- ////
 	const initialState = {
@@ -22,32 +21,43 @@ const PlantDetails = ({ match }) => {
 		common_name: '',
 		genus: '',
 		scientific_name: '',
-	};
-	const [plant, setPlant] = useState([]);
-	const [form, setForm] = useState(false);
-	const [formState, setFormState] = useState(initialState);
+	}
+	const [plant, setPlant] = useState([])
+	const [form, setForm] = useState(false)
+	const [formState, setFormState] = useState(initialState)
+
+	// -- useEffect(s) -- //
+	useEffect(function getPlant() {
+		Axios(plantUrl)
+			.then((data) => {
+				console.log(data)
+				setPlant(data.data)
+			})
+			.catch((error) => {})
+		//eslint-disable-next-line
+	}, [])
 
 	//// -- Functions / Handlers -- ////
 
-	const handleClose = () => setForm(false);
-	const handleShow = () => setForm(true);
+	const handleClose = () => setForm(false)
+	const handleShow = () => setForm(true)
 
 	// To submit changes to your plant details
 	const handleSubmit = (event) => {
-		handlePut();
-	};
+		handlePut()
+	}
 
 	//Put request to update to specific plant id page
 	const handlePut = () => {
-		const data = formState;
-		Axios.put(url, data).then((response) => {
-			console.log(response);
-			setPlant(response.data);
-		});
-	};
+		const data = formState
+		Axios.put(plantUrl, data).then((response) => {
+			console.log(response)
+			setPlant(response.data)
+		})
+	}
 	const handleChange = (event) => {
-		setFormState({ ...formState, [event.target.id]: event.target.value });
-	};
+		setFormState({ ...formState, [event.target.id]: event.target.value })
+	}
 
 	// Edit Plant Modal
 	const renderModal = () => {
@@ -78,7 +88,7 @@ const PlantDetails = ({ match }) => {
 						/>
 						<br />
 						{/* Common Name */}
-						<label htmlFor='family_common_name'>Common Family Name:</label>
+						<label htmlFor='family_common_name'>Name:</label>
 						<input
 							type='text'
 							id='family_common_name'
@@ -113,24 +123,15 @@ const PlantDetails = ({ match }) => {
 					<Button
 						variant='primary'
 						onClick={() => {
-							handleClose();
-							handleSubmit();
+							handleClose()
+							handleSubmit()
 						}}>
 						update changes
 					</Button>
 				</Modal.Footer>
 			</Modal>
-		);
-	};
-
-	// -- useEffect(s) -- //
-	useEffect(function getPlant() {
-		Axios(url)
-			.then((data) => {
-				setPlant(data.data);
-			})
-			.catch((error) => {});
-	}, []);
+		)
+	}
 
 	//// -- Page Content -- ////
 	return (
@@ -171,7 +172,7 @@ const PlantDetails = ({ match }) => {
 				<CreateComment plant={plant} setPlant={setPlant} />
 			</section>
 		</>
-	);
+	)
 };
 
 export default PlantDetails;

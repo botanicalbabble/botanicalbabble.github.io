@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
-import { apiUrl } from '../../config';
+// import { apiUrl } from '../../config';
 import './Home.css';
 
 const Home = () => {
 	//// -- Variables -- ////
-
-	const url = `${apiUrl}/plants`;
+	const url = `https://botanical-babble.herokuapp.com/api/plants`;
 
 	//// -- States -- ////
 
