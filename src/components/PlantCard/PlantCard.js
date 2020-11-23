@@ -3,9 +3,6 @@ import Card from 'react-bootstrap/Card'
 import { NavLink } from 'react-router-dom'
 import './PlantCard.css'
 
-
-//5fbbfdb363939c001731b274
-
 const PlantCard = ({ plant }) => {
     return (
         <div>
