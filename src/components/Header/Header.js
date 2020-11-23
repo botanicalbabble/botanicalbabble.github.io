@@ -140,6 +140,20 @@ const Header = () => {
 								required
 							/>
 						</Form.Group>
+
+						{/* Image */}
+						<Form.Group>
+							<Form.Label>Image URL</Form.Label>
+							<Form.Control
+								type='text'
+								id='image_url'
+								placeholder='ex. https://i.imgur.com/bFDWhkK.jpg'
+								onChange={handleChange}
+							/>
+							<Form.Text className='text-muted'>
+								* Must be a valid image URL
+							</Form.Text>
+						</Form.Group>
 						<Button
 							variant='primary'
 							type='submit'
@@ -155,7 +169,7 @@ const Header = () => {
 				<Modal.Footer></Modal.Footer>
 			</Modal>
 		</>
-	)
+	);
 }
 
 export default Header

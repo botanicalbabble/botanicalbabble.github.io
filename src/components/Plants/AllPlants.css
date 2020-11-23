@@ -1,11 +1,19 @@
+main {
+    background-size: cover;
+   
+}
 .card-image {
     width: 100px;
     height: 100px;
+    overflow: scroll;
+    
 }
 
 .card-temp { 
     /* border-style: solid;
     border-color: black; */
     border: solid black .1rem;
-    margin: 10px;
+    margin: .5rem auto;
+    width: 300px;
+    background-color: lightseagreen;
 }

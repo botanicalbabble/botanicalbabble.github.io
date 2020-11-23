@@ -3,9 +3,6 @@ import Card from 'react-bootstrap/Card'
 import { NavLink } from 'react-router-dom'
 import './PlantCard.css'
 
-
-//5fbbfdb363939c001731b274
-
 const PlantCard = ({ plant }) => {
     return (
         <div>
@@ -18,15 +15,15 @@ const PlantCard = ({ plant }) => {
                 />
                 <Card.Text>
                         Family: {plant.family} <br />
-                        Family Common name {plant.family_common_name} <br />
-                        
-                         Genus {plant.genus} <br /> 
-                         Scientific Name: {plant.scientific_name} 
+                        Family Common name: {plant.family_common_name} <br />
+                        Genus: {plant.genus} <br /> 
+                        Scientific Name: {plant.scientific_name} 
                 </Card.Text>    
             </Card>
         </NavLink>
         </div>
     );
+
 };
 
 export default PlantCard;
