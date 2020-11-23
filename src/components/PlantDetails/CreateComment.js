@@ -3,14 +3,19 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
 import { apiUrl } from '../../config';
-
-
-const commentsUrl = `${apiUrl}/comments`;
-const plantsUrl = `${apiUrl}/plants`;
+import moment from 'moment';
+import './CreateComment.css';
 
 const CreateComment = ({ plant, setPlant }) => {
 
-	// States
+	//// -- Variables -- ////
+	
+	const plantId = plant._id;
+	const commentsUrl = `${apiUrl}/comments`;
+	const plantsUrl = `${apiUrl}/plants`;
+
+	//// -- States -- ////
+
 	const [show, setShow] = useState(false);
 	const [formState, setFormState] = useState({
 		comment_name: '',
@@ -18,16 +23,15 @@ const CreateComment = ({ plant, setPlant }) => {
 		plantId: '',
 	});
 
-	// Variables
-	const plantIdForm = plant._id;
-	// Functions // Handlers
+	//// -- Functions / Handlers -- ////
+
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const handleChange = (event, plant_id) => {
 		setFormState({
 			...formState,
 			[event.target.id]: event.target.value,
-			plantId: plantIdForm,
+			plantId: plantId,
 		});
 	};
 	const handlePostComment = function () {
@@ -40,7 +44,23 @@ const CreateComment = ({ plant, setPlant }) => {
 		)
 			.then((response) => console.log(response))
 			.then(() => {
-				fetch(plantsUrl + '/' + plantIdForm)
+				fetch(plantsUrl + '/' + plantId)
+					.then((res) => res.json())
+					.then((res) => {
+						setPlant(res);
+					})
+					.catch(console.error);
+			});
+	};
+	const handleDeleteComment = function (event, commentId) {
+		const deleteUrl = `${commentsUrl}/${plantId}/${commentId}`;
+		Axios.delete(
+			// 'https://botanical-babble.herokuapp.com/api/comments',
+			deleteUrl
+		)
+			.then((response) => console.log(response))
+			.then(() => {
+				fetch(plantsUrl + '/' + plantId)
 					.then((res) => res.json())
 					.then((res) => {
 						setPlant(res);
@@ -50,34 +70,47 @@ const CreateComment = ({ plant, setPlant }) => {
 	};
 
 
+	//// -- Page Content -- ////
 	return (
 		<>
-			<div className='container'>
-				<h2>Comment Section</h2>
+			<div className='comment-container'>
+				<h2>Plant Babble</h2>
 				<div>
-
 					{plant.comments?.map((comment) => {
 						return (
 							<div className='container' key={comment._id}>
 								<ul>
-									<li>{comment.comment_name}</li>
+									<li className='name'>
+										{comment.comment_name}
+										<Button
+											class='btn'
+											className='delete-btn'
+											variant='dark'
+											onClick={(event) => {
+												handleDeleteComment(event, comment._id);
+											}}>
+											<i class='fa fa-trash'></i>
+										</Button>
+									</li>
+									<hr />
 									<li>{comment.comment_body}</li>
-									<li>{comment.createdAt}</li>
+									<li>
+										{moment(comment.createdAt).fromNow()}
+										{/* or we can do the formal format of when the comment was made .format('MMMM Do YYYY, h:mm a') */}
+									</li>
 								</ul>
 							</div>
 						);
 					})}
-
+					<Button variant='primary' onClick={handleShow}>
+						Join the Babble!
+					</Button>
 				</div>
 			</div>
 
-			<Button variant='primary' onClick={handleShow}>
-				Create a comment
-			</Button>
-
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
-					<Modal.Title>Modal heading</Modal.Title>
+					<Modal.Title>Comment</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					Enter your comment playa

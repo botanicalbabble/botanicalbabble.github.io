@@ -2,16 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
-import './plantDetails.css';
 import CreateComment from './CreateComment';
 import { apiUrl } from '../../config';
+import './plantDetails.css';
 
-//Created a container to hold individual plant profile
+
 const PlantDetails = ({ match }) => {
+
+	//// -- Variables -- ////
+	
 	const plantId = match.params._id;
-	const [plant, setPlant] = useState([]);
 	const url = `${apiUrl}/plants/${plantId}`;
 
+	//// -- States -- ////
 	const initialState = {
 		name: '',
 		slug: 'hello slug',
@@ -20,19 +23,20 @@ const PlantDetails = ({ match }) => {
 		genus: '',
 		scientific_name: '',
 	};
-
+	const [plant, setPlant] = useState([]);
 	const [form, setForm] = useState(false);
-	const handleClose = () => setForm(false);
-	const handleShow = () => setForm(true);
 	const [formState, setFormState] = useState(initialState);
 
-	useEffect(function getPlant() {
-		Axios(url)
-			.then((data) => {
-				setPlant(data.data);
-			})
-			.catch((error) => {});
-	}, []);
+	//// -- Functions / Handlers -- ////
+
+	const handleClose = () => setForm(false);
+	const handleShow = () => setForm(true);
+
+	// To submit changes to your plant details
+	const handleSubmit = (event) => {
+		handlePut();
+	};
+
 	//Put request to update to specific plant id page
 	const handlePut = () => {
 		const data = formState;
@@ -41,17 +45,11 @@ const PlantDetails = ({ match }) => {
 			setPlant(response.data);
 		});
 	};
-
-	// To submit changes to your plant details
-	const handleSubmit = (event) => {
-		// event.preventDefault()
-		// setFormState(initialState);
-		handlePut();
-	};
-
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
+
+	// Edit Plant Modal
 	const renderModal = () => {
 		return (
 			<Modal show={form} onHide={handleClose} centered size='md'>
@@ -125,6 +123,16 @@ const PlantDetails = ({ match }) => {
 		);
 	};
 
+	// -- useEffect(s) -- //
+	useEffect(function getPlant() {
+		Axios(url)
+			.then((data) => {
+				setPlant(data.data);
+			})
+			.catch((error) => {});
+	}, []);
+
+	//// -- Page Content -- ////
 	return (
 		<>
 			{renderModal()}
@@ -139,7 +147,10 @@ const PlantDetails = ({ match }) => {
 					alt={plant.common_name}
 				/>
 				<button className='button button-join'>Join Babble!</button>
-				<button className='button button-fav'>Add to Favs</button>
+
+				<button onClick={handleShow} className='button button-fav'>
+					Edit Plant
+				</button>
 				<p>
 					<u>Common Family Name</u>: {plant.family_common_name}
 				</p>
@@ -155,7 +166,6 @@ const PlantDetails = ({ match }) => {
 					aute irure dolor in reprehenderit in voluptate velit esse cillum
 					dolore eu fugiat nulla pariatur.
 				</p>
-				<button onClick={handleShow}>Edit plant</button>
 			</section>
 			<section>
 				<CreateComment plant={plant} setPlant={setPlant} />

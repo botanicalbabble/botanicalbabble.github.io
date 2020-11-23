@@ -1,11 +1,12 @@
 import React from 'react';
 import Home from './components/Home/Home';
-import RandomPlant from './components/RandomPlant/RandomPlant'
+import RandomPlant from './components/RandomPlant/RandomPlant';
 import PlantDetails from './components/PlantDetails/PlantDetails';
-import Comments from './components/Comments/Comments'
+import Comments from './components/Comments/Comments';
 import { Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import AllPlants from './components/Plants/AllPlants';
+// import './index.scss'
 
 const App = () => {
 	return (
@@ -21,6 +22,7 @@ const App = () => {
 						return <Home match={routerProps.match} />;
 					}}
 				/>
+
 				<Route
 					path='/allplants'
 					render={(routerProps) => {

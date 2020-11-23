@@ -3,14 +3,15 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
+import { apiUrl } from '../../config';
+import { Redirect } from 'react-router-dom';
 
 const Header = () => {
-	const [form, setForm] = useState(false);
-	const handleClose = () => setForm(false);
-	const handleShow = () => setForm(true);
+	//// -- Variables -- ////
+
+	//// -- States -- ////
 
 	const initialState = {
 		name: '',
@@ -18,34 +19,36 @@ const Header = () => {
 		common_name: '',
 		genus: '',
 		scientificName: '',
-		slug: 'hello slug'
+		image_url: 'https://i.imgur.com/iw0FTRY.png',
 	};
+	const [form, setForm] = useState(false);
+	const [newPlantId, setNewPlantId] = useState(null);
+	const [formState, setFormState] = useState(initialState);
 
-	const [formState, setFormState] = useState(initialState)
+	//// -- Functions / Handlers -- ////
 
-	const handlePost2 = function () {
-		const data = formState
-		Axios.post(
-			'https://botanical-babble.herokuapp.com/api/plants',
-			data
-		).then((response) => console.log(response));
-	};
-
-	const handleSubmit = (event) => {
-		// event.preventDefault();
-		// setFormState(initialState);
-		handlePost2();
-	};
-
+	const handleClose = () => setForm(false);
+	const handleShow = () => setForm(true);
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
+	const handleSubmit = function () {
+		const data = formState;
+		Axios.post(`${apiUrl}/plants`, data).then((response) => {
+			console.log(response);
+			setNewPlantId(response.data._id);
+		});
+	};
 
+	if (newPlantId) {
+		return <Redirect to={`/plant/${newPlantId}`} />;
+	}
 
+	//// -- Page Content -- ////
 
 	return (
 		<>
-			<Navbar as='header' sticky='top' bg='light' expand='lg'>
+			<Navbar as='header' sticky='top' bg='light' expand='lg' variant='light'>
 				<Navbar.Brand href='/'>
 					<img
 						src='https://i.imgur.com/bpNKU65.png'
@@ -60,82 +63,93 @@ const Header = () => {
 						<Nav.Link href='/randomplant'>Random Plant</Nav.Link>
 						<Nav.Link onClick={handleShow}>New Plant</Nav.Link>
 					</Nav>
-					<Form inline>
+					{/* <Form inline>
 						<FormControl type='text' placeholder='Search' className='mr-sm-2' />
 						<Button variant='outline-success'>Search</Button>
-					</Form>
+					</Form> */}
 				</Navbar.Collapse>
 			</Navbar>
-			<Modal show={form} onHide={handleClose} centered size='md'>
+			<Modal show={form} onHide={handleClose} centered size='lg'>
 				<Modal.Header>
 					<Modal.Title>Create A New Plant</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<form action='submit'>
-						{/* Name */}
-						<label htmlFor='name'>Name:</label>
-						<input
-							type='text'
-							name=''
-							id='name'
-							placeholder='Name'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Family */}
-						<label htmlFor='family'>Family:</label>
-						<input
-							type='text'
-							name=''
-							id='family'
-							placeholder='Family'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Common Name */}
-						<label htmlFor='common_name'>Common Name:</label>
-						<input
-							type='text'
-							name=''
-							id='common_name'
-							placeholder='Family Common Name'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Genus */}
-						<label htmlFor='genus'>Genus:</label>
-						<input
-							type='text'
-							name=''
-							id='genus'
-							placeholder='Genus'
-							onChange={handleChange}
-						/>
-						<br />
+					<Form action='submit' onSubmit={handleSubmit}>
+						{/* Plant Name */}
+						<Form.Group>
+							<Form.Label>Plant Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='name'
+								placeholder='ex. Evergreen oak'
+								onChange={handleChange}
+								required
+							/>
+							<Form.Text className='text-muted'>
+								{/* We'll never share your plant with anyone else. */}
+							</Form.Text>
+						</Form.Group>
+
 						{/* Scientific Name */}
-						<label htmlFor='scientific_name'>Scientific Name:</label>
-						<input
-							type='text'
-							name=''
-							id='scientific_name'
-							placeholder='Scientific Name'
-							onChange={handleChange}
-						/>
-					</form>
+						<Form.Group>
+							<Form.Label>Scientific Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='scientificName'
+								placeholder='ex. Quercus rotundifolia'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* Family Common Name */}
+						<Form.Group>
+							<Form.Label>Family Common Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='common_name'
+								placeholder='ex. Beech family'
+								onChange={handleChange}
+							/>
+							<Form.Text className='text-muted'>* Optional</Form.Text>
+						</Form.Group>
+
+						{/* Family */}
+						<Form.Group>
+							<Form.Label>Family</Form.Label>
+							<Form.Control
+								type='text'
+								id='family'
+								placeholder='ex. Fagaceae'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* Genus */}
+						<Form.Group>
+							<Form.Label>Genus</Form.Label>
+							<Form.Control
+								type='text'
+								id='genus'
+								placeholder='ex. Quercus'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+						<Button
+							variant='primary'
+							type='submit'
+							onClick={handleSubmit}
+							style={{ margin: '1rem' }}>
+							Submit
+						</Button>
+						<Button variant='secondary' onClick={handleClose}>
+							Close
+						</Button>
+					</Form>
 				</Modal.Body>
-				<Modal.Footer>
-					<Button variant='secondary' onClick={handleClose}>
-						Close
-					</Button>
-					<Button
-						variant='primary'
-						onClick={() => {
-							handleClose();
-							handleSubmit();
-						}}>
-						Save Changes
-					</Button>
-				</Modal.Footer>
+				<Modal.Footer></Modal.Footer>
 			</Modal>
 		</>
 	);
