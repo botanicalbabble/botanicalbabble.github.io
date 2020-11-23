@@ -5,3 +5,8 @@ main {
 	background-size: cover;
 	height: 100vh;
 }
+
+.rectangle {
+	background-color:rgba(7, 7, 7, 0.253);
+
+}
