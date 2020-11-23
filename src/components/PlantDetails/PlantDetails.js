@@ -147,7 +147,7 @@ const PlantDetails = ({ match }) => {
 					src={plant.image_url}
 					alt={plant.common_name}
 				/>
-				<button className='button button-join'>Join Babble!</button>
+				{/* <button className='button button-join'>Join Babble!</button> */}
 
 				<button onClick={handleShow} className='button button-fav'>
 					Edit Plant
