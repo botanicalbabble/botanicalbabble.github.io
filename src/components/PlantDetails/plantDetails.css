@@ -43,6 +43,7 @@ h1 {
 .button-join:hover {
 	background-color: #79af50;
 }
+
 .button:active {
 	transform: translateY(1px);
 }

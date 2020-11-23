@@ -34,3 +34,19 @@ hr {
 	display: inline;
 	margin-right: -2rem;
 }
+
+.button-join {
+	display: inline-block;
+	margin: 1rem;
+	padding: 0.25rem 1.25rem;
+	background-color: #577e3a;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	cursor: pointer;
+	border: 0.15rem solid black;
+	border-radius: 0.25rem;
+}
+
+.button-join:hover {
+	background-color: #79af50;
+}

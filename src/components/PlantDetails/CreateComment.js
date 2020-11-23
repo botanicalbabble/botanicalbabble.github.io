@@ -75,7 +75,7 @@ const CreateComment = ({ plant, setPlant }) => {
 	return (
 		<>
 			<div className='comment-container'>
-				<h2>Plant Babble</h2>
+				{/* <h2>Plant Babble</h2> */}
 				<div>
 					{plant.comments?.map((comment) => {
 						return (
@@ -88,7 +88,7 @@ const CreateComment = ({ plant, setPlant }) => {
 											className='delete-btn'
 											variant='dark'
 											onClick={(event) => {
-												handleDeleteComment(event, comment._id);
+												handleDeleteComment(event, comment._id)
 											}}>
 											<i class='fa fa-trash'></i>
 										</Button>
@@ -101,12 +101,12 @@ const CreateComment = ({ plant, setPlant }) => {
 									</li>
 								</ul>
 							</div>
-						);
+						)
 					})}
-					<Button variant='primary' onClick={handleShow}>
-						Join the Babble!
-					</Button>
 				</div>
+				<Button variant='primary' className='button-join' onClick={handleShow}>
+					Join the Babble!
+				</Button>
 			</div>
 
 			<Modal show={show} onHide={handleClose}>
@@ -114,12 +114,11 @@ const CreateComment = ({ plant, setPlant }) => {
 					<Modal.Title>Comment</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					Enter your comment playa
 					<form action='submit' onSubmit={handlePostComment}>
 						<input
 							type='text'
 							id='comment_name'
-							placeholder='Enter your name, b'
+							placeholder='Name'
 							onChange={handleChange}
 						/>
 						<input
@@ -140,15 +139,15 @@ const CreateComment = ({ plant, setPlant }) => {
 						variant='primary'
 						type='submit'
 						onClick={() => {
-							handleClose();
-							handlePostComment();
+							handleClose()
+							handlePostComment()
 						}}>
 						Save Changes
 					</Button>
 				</Modal.Footer>
 			</Modal>
 		</>
-	);
+	)
 };
 
 export default CreateComment;
