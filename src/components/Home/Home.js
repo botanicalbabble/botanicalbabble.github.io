@@ -34,17 +34,19 @@ const Home = () => {
 				</div>
 				<div>
 					{console.log(data)}
-					<Carousel style={{ minHeight: '90vh' }}>
+					<Carousel style={{ minHeight: '40vh' }}>
 						{data.map((plant) => {
 							return (
 								<Carousel.Item key={plant.id} style={{ maxHeight: '90vh' }}>
 									<img
 										className='d-plant w-100'
 										style={{
-											height: '90vh',
+											height: '50vh',
 											width: '100%',
 											objectFit: 'cover',
-											overflow: 'hidden',
+											overflow: 'scroll',
+											margin: 'auto',
+											border: '.6rem solid gray',
 										}}
 										src={plant.image_url}
 										alt={plant.scientific_name}
