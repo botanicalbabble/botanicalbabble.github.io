@@ -47,7 +47,6 @@ const Home = () => {
 				</div> */}
 				<div>
 					<Carousel style={{ minHeight: '90vh' }}>
-
 						{data.map((plant) => {
 							return (
 								<Carousel.Item key={plant._id} style={{ maxHeight: '90vh' }}>
@@ -64,7 +63,7 @@ const Home = () => {
 										src={plant.image_url}
 										alt={plant.scientific_name}
 									/>
-									
+
 									<Carousel.Caption>
 										<div className='rectangle'>
 											<br />
@@ -73,12 +72,17 @@ const Home = () => {
 											<h2>What is Botanical Babble?</h2>
 											<br />
 											<h3>
-												Botanical babble is a discussion about your favorite
-												plant, posting information about plants and giving care
-												tips.
+												Botanical Babble is a hub for plant lovers, enthusiasts,
+												and green thumbs alike! Browse our extensive database
+												full of beautiful plants in the “all plants” section
+												above. We made this app for you to meet other plant
+												enthusiasts, exchange plant care tips, and more so take
+												advantage of our babble section under each plant
+												profile! Want to show off your own plants? Upload your
+												own image and plant information in our “add a plant”
+												section in the navigation bar above! Welcome to the
+												Botanical Babble family!
 											</h3>
-											<h4>Go to All Plants!</h4>
-											<h4> Add your plant using New Plant!</h4>
 											<br />
 										</div>
 										<br />
@@ -93,7 +97,7 @@ const Home = () => {
 										<p>{plant.common_name}</p>
 									</Carousel.Caption>
 								</Carousel.Item>
-							)
+							);
 						})}
 					</Carousel>
 				</div>
