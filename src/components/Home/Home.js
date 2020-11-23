@@ -61,17 +61,19 @@ const Home = () => {
 										src={plant.image_url}
 										alt={plant.scientific_name}
 									/>
+									
 									<Carousel.Caption>
 										<div className='rectangle'>
 											<br />
 											<h1>Welcome to Botanical Babble</h1>
 
-											<h3>What is Botanical Babble?</h3>
-											<p>
+											<h2>What is Botanical Babble?</h2>
+											<br />
+											<h3>
 												Botanical babble is a discussion about your favorite
 												plant, posting information about plants and giving care
 												tips.
-											</p>
+											</h3>
 											<h4>Go to All Plants!</h4>
 											<h4> Add your plant using New Plant!</h4>
 											<br />
@@ -84,13 +86,7 @@ const Home = () => {
 										<br />
 										<br />
 										<br />
-										<br />
-										<br />
-										<br />
-										<br />
-										<br />
-										<br />
-										<br />
+
 										<p>{plant.common_name}</p>
 									</Carousel.Caption>
 								</Carousel.Item>
