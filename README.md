@@ -1,7 +1,9 @@
-## Take a look inside the /planning for more details
+## Welcome to Botanical Babbles
 
-Hey guys, I'm in models. Hi! I am Tasha!
+We're here to share info with the plant community!
 
-This is Marj, she's badass.
+You can add new plants and comment!
 
-This is Gabriel.
+If you say something you don't mean, you can delete your comments!
+
+### Click [HERE](https://bbfe.herokuapp.com/)
