@@ -49,16 +49,15 @@ const Home = () => {
 					<Carousel style={{ minHeight: '90vh' }}>
 						{data.map((plant) => {
 							return (
-								<Carousel.Item key={plant._id} style={{ maxHeight: '90vh' }}>
+								<Carousel.Item key={plant._id} style={{ maxHeight: '100vh' }}>
 									<img
 										className='d-plant w-100'
 										style={{
-											height: '50vh',
+											height: '90vh',
 											width: '100%',
 											objectFit: 'cover',
 											overflow: 'scroll',
 											margin: 'auto',
-											border: '.6rem solid gray',
 										}}
 										src={plant.image_url}
 										alt={plant.scientific_name}
