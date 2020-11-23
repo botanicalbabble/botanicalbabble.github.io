@@ -10,7 +10,7 @@ import { Redirect } from 'react-router-dom'
 
 const Header = () => {
 	//// -- Variables -- ////
-
+// NEW VARIABLE COMMENT
 	//// -- States -- ////
 
 	const initialState = {
