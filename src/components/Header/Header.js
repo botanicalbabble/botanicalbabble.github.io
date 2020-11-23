@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Axios from 'axios';
+import React, { useState } from 'react'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Axios from 'axios'
 // import { apiUrl } from '../../config';
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 const Header = () => {
 	//// -- Variables -- ////
@@ -20,30 +20,31 @@ const Header = () => {
 		genus: '',
 		scientificName: '',
 		image_url: 'https://i.imgur.com/iw0FTRY.png',
-	};
-	const [form, setForm] = useState(false);
-	const [newPlantId, setNewPlantId] = useState(null);
-	const [formState, setFormState] = useState(initialState);
+	}
+	const [form, setForm] = useState(false)
+	const [newPlantId, setNewPlantId] = useState(null)
+	const [formState, setFormState] = useState(initialState)
 
 	//// -- Functions / Handlers -- ////
 
-	const handleClose = () => setForm(false);
-	const handleShow = () => setForm(true);
+	const handleClose = () => setForm(false)
+	const handleShow = () => setForm(true)
 	const handleChange = (event) => {
-		setFormState({ ...formState, [event.target.id]: event.target.value });
-	};
-	const url = 'https://botanical-babble.herokuapp.com/api/plants';
+		setFormState({ ...formState, [event.target.id]: event.target.value })
+	}
+	const url = 'https://botanical-babble.herokuapp.com/api/plants'
 
-	const handleSubmit = function () {
-		const data = formState;
+	const handleSubmit = function (event) {
+		const data = formState
+		event.preventDefault()
+		// console.log("hellooooooo")
 		Axios.post(url, data).then((response) => {
-			console.log(response);
-			setNewPlantId(response.data._id);
-		});
-	};
-
+			setNewPlantId(response.data._id)
+			console.log(response.data._id)
+		})
+	}
 	if (newPlantId) {
-		return <Redirect to={`/plant/${newPlantId}`} />;
+		return <Redirect to={`/plant/${newPlantId}`} />
 	}
 
 	//// -- Page Content -- ////
@@ -82,7 +83,7 @@ const Header = () => {
 							<Form.Label>Plant Name</Form.Label>
 							<Form.Control
 								type='text'
-								id='name'
+								id='common_name'
 								placeholder='ex. Evergreen oak'
 								onChange={handleChange}
 								required
@@ -97,7 +98,7 @@ const Header = () => {
 							<Form.Label>Scientific Name</Form.Label>
 							<Form.Control
 								type='text'
-								id='scientificName'
+								id='scientific_name'
 								placeholder='ex. Quercus rotundifolia'
 								onChange={handleChange}
 								required
@@ -109,7 +110,7 @@ const Header = () => {
 							<Form.Label>Family Common Name</Form.Label>
 							<Form.Control
 								type='text'
-								id='common_name'
+								id='family_common_name'
 								placeholder='ex. Beech family'
 								onChange={handleChange}
 							/>
@@ -154,7 +155,7 @@ const Header = () => {
 				<Modal.Footer></Modal.Footer>
 			</Modal>
 		</>
-	);
-};
+	)
+}
 
-export default Header;
+export default Header

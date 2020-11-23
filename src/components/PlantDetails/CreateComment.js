@@ -9,7 +9,7 @@ import './CreateComment.css';
 const CreateComment = ({ plant, setPlant }) => {
 
 	//// -- Variables -- ////
-	const url = `https://botanical-babble.herokuapp.com/api/plants`;
+	const url = `https://botanical-babble.herokuapp.com/api`;
 
 	const plantId = plant._id;
 	const commentsUrl = `${url}/comments`;
@@ -54,7 +54,7 @@ const CreateComment = ({ plant, setPlant }) => {
 			});
 	};
 	const handleDeleteComment = function (event, commentId) {
-		const deleteUrl = `${url}/${plantId}/${commentId}`;
+		const deleteUrl = `${commentsUrl}/${plantId}/${commentId}`;
 		Axios.delete(
 			// 'https://botanical-babble.herokuapp.com/api/comments',
 			deleteUrl
