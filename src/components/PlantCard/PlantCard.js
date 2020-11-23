@@ -23,6 +23,7 @@ const PlantCard = ({ plant }) => {
         </NavLink>
         </div>
     );
+
 };
 
 export default PlantCard;
