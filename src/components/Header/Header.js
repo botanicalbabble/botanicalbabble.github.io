@@ -32,7 +32,7 @@ const Header = () => {
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value });
 	};
-	const url = `https://botanical-babble.herokuapp.com/api/plants`;
+	const url = 'https://botanical-babble.herokuapp.com/api/plants';
 
 	const handleSubmit = function () {
 		const data = formState;
