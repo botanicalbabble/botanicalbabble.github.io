@@ -6,11 +6,16 @@ import { apiUrl } from '../../config';
 import moment from 'moment';
 import './CreateComment.css';
 
-const commentsUrl = `${apiUrl}/comments`;
-const plantsUrl = `${apiUrl}/plants`;
-
 const CreateComment = ({ plant, setPlant }) => {
-	// States
+
+	//// -- Variables -- ////
+	
+	const plantId = plant._id;
+	const commentsUrl = `${apiUrl}/comments`;
+	const plantsUrl = `${apiUrl}/plants`;
+
+	//// -- States -- ////
+
 	const [show, setShow] = useState(false);
 	const [formState, setFormState] = useState({
 		comment_name: '',
@@ -18,9 +23,8 @@ const CreateComment = ({ plant, setPlant }) => {
 		plantId: '',
 	});
 
-	// Variables
-	const plantId = plant._id;
-	// Functions // Handlers
+	//// -- Functions / Handlers -- ////
+
 	const handleClose = () => setShow(false);
 	const handleShow = () => setShow(true);
 	const handleChange = (event, plant_id) => {
@@ -65,6 +69,8 @@ const CreateComment = ({ plant, setPlant }) => {
 			});
 	};
 
+
+	//// -- Page Content -- ////
 	return (
 		<>
 			<div className='comment-container'>

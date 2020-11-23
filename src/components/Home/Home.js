@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
-import './Home.css';
 import Carousel from 'react-bootstrap/Carousel';
 import { apiUrl } from '../../config';
-
-const url = `${apiUrl}/plants`;
-
+import './Home.css';
 
 const Home = () => {
+	//// -- Variables -- ////
+
+	const url = `${apiUrl}/plants`;
+
+	//// -- States -- ////
+
 	const [data, setData] = useState([]);
+
+	//// -- Functions / Handlers -- ////
+
+	//// -- useEffect(s) -- ////
 
 	useEffect(() => {
 		Axios(url)
@@ -16,9 +23,9 @@ const Home = () => {
 				setData(res.data);
 			})
 			.catch((error) => {});
+	}, []);
 
-	}, [])
-
+	//// -- Page Content -- ////
 
 	return (
 		<div>
