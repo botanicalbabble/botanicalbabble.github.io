@@ -36,7 +36,7 @@ const Header = () => {
 
 	const handleSubmit = function () {
 		const data = formState;
-		Axios.post(`${url}/plants`, data).then((response) => {
+		Axios.post(url, data).then((response) => {
 			console.log(response);
 			setNewPlantId(response.data._id);
 		});
