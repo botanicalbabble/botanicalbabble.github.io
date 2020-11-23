@@ -6,6 +6,7 @@ import Comments from './components/Comments/Comments';
 import { Route } from 'react-router-dom';
 import Header from './components/Header/Header';
 import AllPlants from './components/Plants/AllPlants';
+// import './index.scss'
 
 const App = () => {
 	return (

@@ -1,65 +1,57 @@
-import React, { useState } from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
-import Button from 'react-bootstrap/Button';
-import Axios from 'axios';
+import React, { useState } from 'react'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import Modal from 'react-bootstrap/Modal'
+import Form from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import Axios from 'axios'
+// import { apiUrl } from '../../config';
+import { Redirect } from 'react-router-dom'
 
 const Header = () => {
-	const [form, setForm] = useState(false);
-	const handleClose = () => setForm(false);
-	const handleShow = () => setForm(true);
+	//// -- Variables -- ////
+
+	//// -- States -- ////
 
 	const initialState = {
 		name: '',
 		family: '',
-		commonName: '',
+		common_name: '',
 		genus: '',
 		scientificName: '',
-	};
+		image_url: 'https://i.imgur.com/iw0FTRY.png',
+	}
+	const [form, setForm] = useState(false)
+	const [newPlantId, setNewPlantId] = useState(null)
+	const [formState, setFormState] = useState(initialState)
 
-	// const handlePost = function () {
-	// 	Axios({
-	// 		method: 'post',
-	// 		url: 'https://botanical-babble.herokuapp.com/api/plants',
-	// 		data: {
-	// 			name: 'Plant Name',
-	// 			family: 'Tree family',
-	// 			commonName: 'Tree',
-	// 			genus: 'Green Trees',
-	// 			scientificName: 'Science Tree',
-	// 		},
-	// 	});
-	// };
+	//// -- Functions / Handlers -- ////
 
-	const handlePost2 = function () {
-		const data = {
-			common_name: 'Planty',
-			slug: 'planties slug',
-		};
-		Axios.post(
-			'https://botanical-babble.herokuapp.com/api/plants',
-			data
-		).then((response) => console.log(response));
-	};
-
-	const handleSubmit = (event) => {
-		// event.preventDefault();
-		// setFormState(initialState);
-		handlePost2();
-	};
-
+	const handleClose = () => setForm(false)
+	const handleShow = () => setForm(true)
 	const handleChange = (event) => {
-		setFormState({ ...formState, [event.target.id]: event.target.value });
-	};
+		setFormState({ ...formState, [event.target.id]: event.target.value })
+	}
+	const url = 'https://botanical-babble.herokuapp.com/api/plants'
 
-	const [formState, setFormState] = useState(initialState);
+	const handleSubmit = function (event) {
+		const data = formState
+		event.preventDefault()
+		// console.log("hellooooooo")
+		Axios.post(url, data).then((response) => {
+			setNewPlantId(response.data._id)
+			console.log(response.data._id)
+		})
+	}
+	if (newPlantId) {
+		return <Redirect to={`/plant/${newPlantId}`} />
+	}
+
+	//// -- Page Content -- ////
 
 	return (
 		<>
-			<Navbar as='header' sticky='top' bg='light' expand='lg'>
+			<Navbar as='header' sticky='top' bg='light' expand='lg' variant='light'>
 				<Navbar.Brand href='/'>
 					<img
 						src='https://i.imgur.com/bpNKU65.png'
@@ -74,85 +66,110 @@ const Header = () => {
 						<Nav.Link href='/randomplant'>Random Plant</Nav.Link>
 						<Nav.Link onClick={handleShow}>New Plant</Nav.Link>
 					</Nav>
-					<Form inline>
+					{/* <Form inline>
 						<FormControl type='text' placeholder='Search' className='mr-sm-2' />
 						<Button variant='outline-success'>Search</Button>
-					</Form>
+					</Form> */}
 				</Navbar.Collapse>
 			</Navbar>
-			<Modal show={form} onHide={handleClose} centered size='md'>
+			<Modal show={form} onHide={handleClose} centered size='lg'>
 				<Modal.Header>
 					<Modal.Title>Create A New Plant</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
-					<form action='submit'>
-						{/* Name */}
-						<label htmlFor='name'>Name:</label>
-						<input
-							type='text'
-							name=''
-							id='name'
-							placeholder='Name'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Family */}
-						<label htmlFor='family'>Family:</label>
-						<input
-							type='text'
-							name=''
-							id='family'
-							placeholder='Family'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Common Name */}
-						<label htmlFor='commonName'>Common Name:</label>
-						<input
-							type='text'
-							name=''
-							id='commonName'
-							placeholder='Family Common Name'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Genus */}
-						<label htmlFor='genus'>Genus:</label>
-						<input
-							type='text'
-							name=''
-							id='genus'
-							placeholder='Genus'
-							onChange={handleChange}
-						/>
-						<br />
+					<Form action='submit' onSubmit={handleSubmit}>
+						{/* Plant Name */}
+						<Form.Group>
+							<Form.Label>Plant Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='common_name'
+								placeholder='ex. Evergreen oak'
+								onChange={handleChange}
+								required
+							/>
+							<Form.Text className='text-muted'>
+								{/* We'll never share your plant with anyone else. */}
+							</Form.Text>
+						</Form.Group>
+
 						{/* Scientific Name */}
-						<label htmlFor='scientificName'>Scientific Name:</label>
-						<input
-							type='text'
-							name=''
-							id='scientificName'
-							placeholder='Scientific Name'
-							onChange={handleChange}
-						/>
-					</form>
+						<Form.Group>
+							<Form.Label>Scientific Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='scientific_name'
+								placeholder='ex. Quercus rotundifolia'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* Family Common Name */}
+						<Form.Group>
+							<Form.Label>Family Common Name</Form.Label>
+							<Form.Control
+								type='text'
+								id='family_common_name'
+								placeholder='ex. Beech family'
+								onChange={handleChange}
+							/>
+							<Form.Text className='text-muted'>* Optional</Form.Text>
+						</Form.Group>
+
+						{/* Family */}
+						<Form.Group>
+							<Form.Label>Family</Form.Label>
+							<Form.Control
+								type='text'
+								id='family'
+								placeholder='ex. Fagaceae'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* Genus */}
+						<Form.Group>
+							<Form.Label>Genus</Form.Label>
+							<Form.Control
+								type='text'
+								id='genus'
+								placeholder='ex. Quercus'
+								onChange={handleChange}
+								required
+							/>
+						</Form.Group>
+
+						{/* Image */}
+						<Form.Group>
+							<Form.Label>Image URL</Form.Label>
+							<Form.Control
+								type='text'
+								id='image_url'
+								placeholder='ex. https://i.imgur.com/bFDWhkK.jpg'
+								onChange={handleChange}
+							/>
+							<Form.Text className='text-muted'>
+								* Must be a valid image URL
+							</Form.Text>
+						</Form.Group>
+						<Button
+							variant='primary'
+							type='submit'
+							onClick={handleSubmit}
+							style={{ margin: '1rem' }}>
+							Submit
+						</Button>
+						<Button variant='secondary' onClick={handleClose}>
+							Close
+						</Button>
+					</Form>
 				</Modal.Body>
-				<Modal.Footer>
-					<Button variant='secondary' onClick={handleClose}>
-						Close
-					</Button>
-					<Button
-						variant='primary'
-						onClick={() => {
-							handleClose();
-							handleSubmit();
-						}}>
-						Save Changes
-					</Button>
-				</Modal.Footer>
+				<Modal.Footer></Modal.Footer>
 			</Modal>
 		</>
 	);
-};
+}
 
-export default Header;
+export default Header

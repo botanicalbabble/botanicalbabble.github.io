@@ -5,7 +5,9 @@ import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
 
 const Comments = () => {
+
 	// Variables
+
 	const initialState = {
 		name: '',
 		comment: '',
@@ -13,17 +15,18 @@ const Comments = () => {
 	};
 
 	// States
+	
 	const [form, setForm] = useState(false);
 	const [newComment, setNewComment] = useState(initialState);
 
 	// Handlers
+
 	const handleClose = () => setForm(false);
 	const handleShow = () => setForm(true);
 	const handleChange = (event) => {
 		setForm({ ...form, [event.target.id]: event.target.value });
 	};
 	const handleSubmit = (event) => {
-		
 	}
 
 	return (

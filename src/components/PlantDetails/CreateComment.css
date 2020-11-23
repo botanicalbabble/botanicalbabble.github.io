@@ -1,0 +1,52 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
+
+ul,
+li {
+	list-style-type: none;
+	text-align: center;
+	justify-content: center;
+}
+h2 {
+	margin-top: 1rem;
+	margin-bottom: -1rem;
+}
+.delete-btn {
+	float: right;
+	cursor: pointer;
+	display: inline;
+}
+
+hr {
+	color: black;
+	width: 20rem;
+}
+
+.comment-container {
+	border: 0.3rem solid black;
+	border-radius: 0.25rem;
+	padding-top: 1rem;
+	padding-bottom: 2rem;
+	background-image: url('../../marble.png');
+	margin: 4rem auto;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.name {
+	display: inline;
+	margin-right: -2rem;
+}
+
+.button-join {
+	display: inline-block;
+	margin: 1rem;
+	padding: 0.25rem 1.25rem;
+	background-color: #577e3a;
+	color: white;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	cursor: pointer;
+	border: 0.15rem solid black;
+	border-radius: 0.25rem;
+}
+
+.button-join:hover {
+	background-color: #79af50;
+}

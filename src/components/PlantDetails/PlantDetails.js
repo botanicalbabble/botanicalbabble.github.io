@@ -1,82 +1,98 @@
-import React, { useState, useEffect } from 'react'
-import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
-import Axios from 'axios'
-import './plantDetails.css'
+import React, { useState, useEffect } from 'react';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Axios from 'axios';
+import CreateComment from './CreateComment';
+// import { apiUrl } from '../../config';
+import './plantDetails.css';
 
-//Created a container to hold individual plant profile
 const PlantDetails = ({ match }) => {
+	//// -- Variables -- ////
+	const url = `https://botanical-babble.herokuapp.com/api`
+
 	const plantId = match.params._id
-	const [plant, setPlant] = useState([])
-	const url = `https://botanical-babble.herokuapp.com/api/plants/${plantId}`
+	const plantUrl = `${url}/plants/${plantId}`
 
+	//// -- States -- ////
 	const initialState = {
-		name: plant.common_name,
-		slug: plant.common_name,
+		name: '',
+		slug: 'hello slug',
 		family: '',
-		commonName: '',
+		common_name: '',
 		genus: '',
-		scientificName: '',
+		scientific_name: '',
 	}
-
+	const [plant, setPlant] = useState([])
 	const [form, setForm] = useState(false)
-	const handleClose = () => setForm(false)
-	const handleShow = () => setForm(true)
 	const [formState, setFormState] = useState(initialState)
-	const [show, setShow] = useState(false)
 
+	// -- useEffect(s) -- //
 	useEffect(function getPlant() {
-		Axios(url)
+		Axios(plantUrl)
 			.then((data) => {
+				console.log(data)
 				setPlant(data.data)
 			})
 			.catch((error) => {})
+		//eslint-disable-next-line
 	}, [])
-	if (!plant) {
-		return null
+
+	//// -- Functions / Handlers -- ////
+
+	const handleClose = () => setForm(false)
+	const handleShow = () => setForm(true)
+
+	// To submit changes to your plant details
+	const handleSubmit = (event) => {
+		handlePut()
 	}
 
-	const handlePut = function () {
-		const data = {
-			common_name: "I've changed third!",
-			// slug: "This is updated"
-		}
-		//Put request to update to specific plant id page
-		Axios.put(
-			`https://botanical-babble.herokuapp.com/api/plants/${plantId}`,
-
-			data
-		).then((response) => console.log(response))
+	//Put request to update to specific plant id page
+	const handlePut = () => {
+		const data = formState
+		Axios.put(plantUrl, data).then((response) => {
+			console.log(response)
+			setPlant(response.data)
+		})
 	}
-
-	//To submit changes to your plant details
-	// const handleSubmit = (event) => {
-	// 	// event.preventDefault()
-	// 	// setFormState(initialState);
-	// 	handlePut()
-	// }
-
 	const handleChange = (event) => {
 		setFormState({ ...formState, [event.target.id]: event.target.value })
 	}
 
-	return (
-		<>
+	// Edit Plant Modal
+	const renderModal = () => {
+		return (
 			<Modal show={form} onHide={handleClose} centered size='md'>
 				<Modal.Header>
 					<Modal.Title>Edit Plant</Modal.Title>
 				</Modal.Header>
 
 				<Modal.Body>
-					<p>hellow</p>
 					<form action='submit'>
 						{/* Name */}
 						<label htmlFor='name'>Name:</label>
 						<input
 							type='text'
-							name={plant.common_name}
-							id='name'
+							id='common_name'
 							placeholder={plant.common_name}
+							onChange={handleChange}
+						/>
+						<br />
+						{/* Scientific Name */}
+						<label htmlFor='scientific_name'>Scientific Name:</label>
+						<input
+							type='text'
+							id='scientific_name'
+							placeholder={plant.scientific_name}
+							onChange={handleChange}
+						/>
+						<br />
+						{/* Common Name */}
+						<label htmlFor='family_common_name'>Name:</label>
+						<input
+							type='text'
+							id='family_common_name'
+							placeholder={plant.family_common_name}
 							onChange={handleChange}
 						/>
 						<br />
@@ -84,19 +100,8 @@ const PlantDetails = ({ match }) => {
 						<label htmlFor='family'>Family:</label>
 						<input
 							type='text'
-							name=''
 							id='family'
-							placeholder='Family'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Common Name */}
-						<label htmlFor='commonName'>Common Name:</label>
-						<input
-							type='text'
-							name=''
-							id='commonName'
-							placeholder='Family Common Name'
+							placeholder={plant.family}
 							onChange={handleChange}
 						/>
 						<br />
@@ -104,19 +109,8 @@ const PlantDetails = ({ match }) => {
 						<label htmlFor='genus'>Genus:</label>
 						<input
 							type='text'
-							name=''
 							id='genus'
-							placeholder='Genus'
-							onChange={handleChange}
-						/>
-						<br />
-						{/* Scientific Name */}
-						<label htmlFor='scientificName'>Scientific Name:</label>
-						<input
-							type='text'
-							name=''
-							id='scientificName'
-							placeholder='Scientific Name'
+							placeholder={plant.genus}
 							onChange={handleChange}
 						/>
 					</form>
@@ -130,14 +124,19 @@ const PlantDetails = ({ match }) => {
 						variant='primary'
 						onClick={() => {
 							handleClose()
-							// handleSubmit()
-							handlePut()
+							handleSubmit()
 						}}>
 						update changes
 					</Button>
 				</Modal.Footer>
 			</Modal>
+		)
+	}
 
+	//// -- Page Content -- ////
+	return (
+		<>
+			{renderModal()}
 			<section className='container'>
 				<h1>{plant.common_name}</h1>
 				<h4>
@@ -148,13 +147,16 @@ const PlantDetails = ({ match }) => {
 					src={plant.image_url}
 					alt={plant.common_name}
 				/>
-				<button className='button button-join'>Join Babble!</button>
-				<button className='button button-fav'>Add to Favs</button>
+				{/* <button className='button button-join'>Join Babble!</button> */}
+
+				<button onClick={handleShow} className='button button-fav'>
+					Edit Plant
+				</button>
 				<p>
-					<u>Family Name</u>: {plant.family_common_name}
+					<u>Common Family Name</u>: {plant.family_common_name}
 				</p>
 				<p>
-					<u>Scientific Family Name</u>: {plant.family}
+					<u>Family</u>: {plant.family}
 				</p>
 				<p>
 					<u>Genus</u>: {plant.genus}
@@ -165,11 +167,12 @@ const PlantDetails = ({ match }) => {
 					aute irure dolor in reprehenderit in voluptate velit esse cillum
 					dolore eu fugiat nulla pariatur.
 				</p>
-				<button onClick={handleShow}>Edit plant</button>
+			</section>
+			<section>
+				<CreateComment plant={plant} setPlant={setPlant} />
 			</section>
 		</>
-		//Created button above to edit and update plant details
 	)
-}
+};
 
-export default PlantDetails
+export default PlantDetails;
