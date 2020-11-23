@@ -9,13 +9,11 @@ import { apiUrl } from '../../config';
 //$ heroku logs --tail --app botanical-babble
 
 const AllPlants = () => {
-
 	//// -- Variables -- ////
 
 	const url = `${apiUrl}/plants`;
 	// const url = `https://botanical-babble.herokuapp.com/api/plants`
-	
-	
+
 	//// -- States -- ////
 
 	const [plants, setPlants] = useState([]);
@@ -24,6 +22,7 @@ const AllPlants = () => {
 	//// -- useEffect(s) -- ////
 
 	useEffect(function getPlants() {
+		console.log(process.env.NODE_ENV);
 		Axios(url)
 			.then((data) => {
 				setPlants(data.data);
@@ -32,7 +31,6 @@ const AllPlants = () => {
 				setError(null);
 			});
 	}, []);
-
 
 	//// -- Page Content -- ////
 	return (
