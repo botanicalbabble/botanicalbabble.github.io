@@ -78,3 +78,21 @@ a place to look at and comment on plants!
 - what will be worked on that day
 - any obstacles that could jeopardize project deadlines
 - If token is needed, discuss during SUP.
+
+# Retro
+## Wins
+
+- the team created a beautiful app
+- everyones strengths played towards the teams success
+- we used our tokens when we were stumped
+- we supported each other when we were confused or lost.
+- tons of practice with git
+
+## Wished we could have gotten...
+
+- proper rendering of the random plant
+- image uploads
+- user auth(to enable profiles and "favorites")
+
+
+
