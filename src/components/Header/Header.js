@@ -51,12 +51,20 @@ const Header = () => {
 
 	return (
 		<>
-			<Navbar as='header' sticky='top' bg='light' expand='lg' variant='light'>
+			<Navbar
+				as='header'
+				sticky='top'
+				bg='dark'
+				expand='lg'
+				variant='dark'
+				style={{ fontSize: '20px' }}
+				nav
+				class='navbar navbar-light bg-light'>
 				<Navbar.Brand href='/'>
 					<img
-						src='https://i.imgur.com/bpNKU65.png'
+						src='https://i.imgur.com/yb58Nd3.png'
 						alt='babblelogo'
-						height='25px'
+						height='95px'
 					/>
 				</Navbar.Brand>
 				<Navbar.Toggle aria-controls='basic-navbar-nav' />
@@ -84,8 +92,7 @@ const Header = () => {
 								onChange={handleChange}
 								required
 							/>
-							<Form.Text className='text-muted'>
-							</Form.Text>
+							<Form.Text className='text-muted'></Form.Text>
 						</Form.Group>
 
 						{/* Scientific Name */}
