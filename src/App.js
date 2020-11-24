@@ -29,6 +29,7 @@ const App = () => {
 					}}
 				/>
 				<Route
+				// Refer to "id" 
 					path='/plant/:_id'
 					render={(routerProps) => {
 						return (

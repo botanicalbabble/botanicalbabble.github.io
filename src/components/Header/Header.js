@@ -40,7 +40,6 @@ const Header = () => {
 
 		Axios.post(url, data).then((response) => {
 			setNewPlantId(response.data._id)
-			console.log(response.data._id)
 		})
 	}
 	if (newPlantId) {
@@ -168,7 +167,8 @@ const Header = () => {
 						</Button>
 					</Form>
 				</Modal.Body>
-				<Modal.Footer></Modal.Footer>
+				{/* Remove this footer and make a line using CSS */}
+				{/* <Modal.Footer></Modal.Footer> */}
 			</Modal>
 		</>
 	);

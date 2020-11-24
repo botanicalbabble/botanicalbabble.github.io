@@ -32,7 +32,6 @@ const PlantDetails = ({ match }) => {
 	useEffect(function getPlant() {
 		Axios(plantUrl)
 			.then((data) => {
-				console.log(data)
 				setPlant(data.data)
 			})
 			.catch((error) => {})
@@ -53,7 +52,6 @@ const PlantDetails = ({ match }) => {
 	const handlePut = () => {
 		const data = formState
 		Axios.put(plantUrl, data).then((response) => {
-			console.log(response)
 			setPlant(response.data)
 		})
 	}

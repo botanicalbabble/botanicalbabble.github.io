@@ -123,7 +123,6 @@ const RandomPlant = ({ match }) => {
 		Axios(url)
 			.then((data) => {
 				setPlant(data.data);
-				console.log(plant.length);
 			})
 			.catch(console.error);
 		//eslint-disable-next-line

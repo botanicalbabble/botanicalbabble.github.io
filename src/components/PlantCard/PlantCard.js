@@ -4,8 +4,8 @@ import { NavLink } from 'react-router-dom'
 import './PlantCard.css'
 
 const PlantCard = ({ plant }) => {
+    // Removed the <div>. too redundant
     return (
-        <div>
         <NavLink to={'/plant/' + plant._id}>
             <Card className='text-center card-temp plant-card'>
                 <Card.Title> <h3>{plant.common_name}</h3> </Card.Title>
@@ -21,7 +21,6 @@ const PlantCard = ({ plant }) => {
                 </Card.Text>    
             </Card>
         </NavLink>
-        </div>
     );
 };
 
