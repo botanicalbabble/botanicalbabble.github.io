@@ -146,10 +146,7 @@ const RandomPlant = ({ match }) => {
 					alt={plant[randomElement]?.common_name}
 					align='center'
 				/>
-				<button className='button button-join'>Join Babble!</button>
-				<button onClick={handleShow} className='button button-fav'>
-					Edit Plant
-				</button>
+
 				<p>
 					<u>Common Family Name</u>: {plant[randomElement]?.family_common_name}
 				</p>
@@ -162,9 +159,6 @@ const RandomPlant = ({ match }) => {
 				<p>
 					<u>Bio</u>: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel cumque ipsam quo, ipsa assumenda necessitatibus praesentium distinctio repellat quia commodi labore cum quam aspernatur ea voluptate, ratione quasi debitis eaque?
 				</p>
-				<section>
-					<CreateComment plant={plant} setPlant={setPlant} />
-				</section>
 			</section>
 		</div>
 	);

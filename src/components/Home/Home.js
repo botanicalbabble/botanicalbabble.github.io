@@ -30,10 +30,12 @@ const Home = () => {
 	return (
 		<div>
 			<main>
+
 				<Carousel
 					controls={false}
 					indicators={false}
 					style={{ minHeight: '90vh' }}>
+
 					{data.map((plant) => {
 						return (
 							<Carousel.Item key={plant._id} style={{ maxHeight: '100vh' }}>
@@ -81,13 +83,16 @@ const Home = () => {
 														}}>
 														Welcome to the Botanical Babble family!
 													</p>
+
 												</p>
 											</h3>
 										</div>
 										<br />
 									</div>
+
 									<br />
 									<br />
+
 								</Carousel.Caption>
 							</Carousel.Item>
 						);

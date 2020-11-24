@@ -29,7 +29,7 @@ const AllPlants = () => {
 
 	return (
 		<div>
-			<div>
+			<div className='container-optional-alcohol'>
 				{plants.map((plant) => (
 					<PlantCard plant={plant} key={plant._id} />
 				))}
