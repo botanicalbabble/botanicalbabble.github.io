@@ -6,4 +6,4 @@ You can add new plants and comment!
 
 If you say something you don't mean, you can delete your comments!
 
-### Click [HERE to VISIT!](https://bbfe.herokuapp.com/)
+### [Click HERE to VISIT!](https://bbfe.herokuapp.com/)
