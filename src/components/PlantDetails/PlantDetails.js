@@ -89,15 +89,6 @@ const PlantDetails = ({ match }) => {
 							onChange={handleChange}
 						/>
 						<br />
-						{/* Common Name */}
-						<label htmlFor='family_common_name'>Name:</label>
-						<input
-							type='text'
-							id='family_common_name'
-							placeholder={plant.family_common_name}
-							onChange={handleChange}
-						/>
-						<br />
 						{/* Family */}
 						<label htmlFor='family'>Family:</label>
 						<input
@@ -128,7 +119,7 @@ const PlantDetails = ({ match }) => {
 							handleClose()
 							handleSubmit()
 						}}>
-						update changes
+						Update changes
 					</Button>
 				</Modal.Footer>
 			</Modal>
@@ -155,19 +146,10 @@ const PlantDetails = ({ match }) => {
 					Edit Plant
 				</button>
 				<p>
-					<u>Common Family Name</u>: {plant.family_common_name}
-				</p>
-				<p>
 					<u>Family</u>: {plant.family}
 				</p>
 				<p>
 					<u>Genus</u>: {plant.genus}
-				</p>
-				<p>
-					<u>Bio</u>: Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-					sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Duis
-					aute irure dolor in reprehenderit in voluptate velit esse cillum
-					dolore eu fugiat nulla pariatur.
 				</p>
 			</section>
 			<section>

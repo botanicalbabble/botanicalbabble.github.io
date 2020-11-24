@@ -8,7 +8,7 @@ const PlantCard = ({ plant }) => {
         <div>
         <NavLink to={'/plant/' + plant._id}>
             <Card className='text-center card-temp plant-card'>
-                <Card.Title> {plant.common_name} </Card.Title>
+                <Card.Title> <h3>{plant.common_name}</h3> </Card.Title>
                 <Card.Img 
                     className='card-image'
                     src={plant.image_url}
@@ -17,13 +17,12 @@ const PlantCard = ({ plant }) => {
                         Family: {plant.family} <br />
                         Family Common name: {plant.family_common_name} <br />
                         Genus: {plant.genus} <br /> 
-                        Scientific Name: {plant.scientific_name} 
+                        Scientific Name: {plant.scientific_name}
                 </Card.Text>    
             </Card>
         </NavLink>
         </div>
     );
-
 };
 
 export default PlantCard;
