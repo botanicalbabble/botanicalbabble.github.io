@@ -2,22 +2,16 @@ import React, { useState, useEffect } from 'react';
 import './AllPlants.css';
 import Axios from 'axios';
 import PlantCard from '../PlantCard/PlantCard';
-import { apiUrl } from '../../config';
-// import data from './test.json';
-// import newData from '../Plants/seedData-1.json';
-
-//$ heroku logs --tail --app botanical-babble
 
 const AllPlants = () => {
 	//// -- Variables -- ////
 
-	// const url = `${apiUrl}/plants`;
-	const url = `https://botanical-babble.herokuapp.com/api/plants`
+	const url = `https://botanical-babble.herokuapp.com/api/plants`;
 
 	//// -- States -- ////
 
 	const [plants, setPlants] = useState([]);
-	const [error, setError] = useState(false);
+
 
 	//// -- useEffect(s) -- ////
 
@@ -27,12 +21,12 @@ const AllPlants = () => {
 			.then((data) => {
 				setPlants(data.data);
 			})
-			.catch((error) => {
-				setError(null);
-			});
+			.catch(console.error);
+			//eslint-disable-next-line
 	}, []);
 
 	//// -- Page Content -- ////
+
 	return (
 		<div>
 			<div>

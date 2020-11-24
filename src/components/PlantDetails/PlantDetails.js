@@ -2,18 +2,19 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
-import CreateComment from './CreateComment';
-// import { apiUrl } from '../../config';
+import CreateComment from '../CreateComment/CreateComment';
 import './plantDetails.css';
 
 const PlantDetails = ({ match }) => {
-	//// -- Variables -- ////
-	const url = `https://botanical-babble.herokuapp.com/api`
 
+	//// -- Variables -- ////
+
+	const url = `https://botanical-babble.herokuapp.com/api`
 	const plantId = match.params._id
 	const plantUrl = `${url}/plants/${plantId}`
 
 	//// -- States -- ////
+
 	const initialState = {
 		name: '',
 		slug: 'hello slug',
@@ -27,6 +28,7 @@ const PlantDetails = ({ match }) => {
 	const [formState, setFormState] = useState(initialState)
 
 	// -- useEffect(s) -- //
+	
 	useEffect(function getPlant() {
 		Axios(plantUrl)
 			.then((data) => {

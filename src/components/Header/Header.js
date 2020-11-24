@@ -5,12 +5,12 @@ import Modal from 'react-bootstrap/Modal'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Axios from 'axios'
-// import { apiUrl } from '../../config';
+
 import { Redirect } from 'react-router-dom'
 
 const Header = () => {
 	//// -- Variables -- ////
-// NEW VARIABLE COMMENT
+
 	//// -- States -- ////
 
 	const initialState = {
@@ -37,7 +37,7 @@ const Header = () => {
 	const handleSubmit = function (event) {
 		const data = formState
 		event.preventDefault()
-		// console.log("hellooooooo")
+
 		Axios.post(url, data).then((response) => {
 			setNewPlantId(response.data._id)
 			console.log(response.data._id)
@@ -66,10 +66,6 @@ const Header = () => {
 						<Nav.Link href='/randomplant'>Random Plant</Nav.Link>
 						<Nav.Link onClick={handleShow}>New Plant</Nav.Link>
 					</Nav>
-					{/* <Form inline>
-						<FormControl type='text' placeholder='Search' className='mr-sm-2' />
-						<Button variant='outline-success'>Search</Button>
-					</Form> */}
 				</Navbar.Collapse>
 			</Navbar>
 			<Modal show={form} onHide={handleClose} centered size='lg'>
@@ -89,7 +85,6 @@ const Header = () => {
 								required
 							/>
 							<Form.Text className='text-muted'>
-								{/* We'll never share your plant with anyone else. */}
 							</Form.Text>
 						</Form.Group>
 
