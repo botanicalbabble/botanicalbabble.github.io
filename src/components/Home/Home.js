@@ -30,7 +30,12 @@ const Home = () => {
 	return (
 		<div>
 			<main>
-				<Carousel style={{ minHeight: '90vh' }}>
+
+				<Carousel
+					controls={false}
+					indicators={false}
+					style={{ minHeight: '90vh' }}>
+
 					{data.map((plant) => {
 						return (
 							<Carousel.Item key={plant._id} style={{ maxHeight: '100vh' }}>
@@ -49,7 +54,6 @@ const Home = () => {
 
 								<Carousel.Caption>
 									<div className='rectangle'>
-
 										<div style={{ margin: '10px 20px 10px 20px' }}>
 											<h1>Welcome to Botanical Babble</h1>
 
@@ -69,19 +73,26 @@ const Home = () => {
 													profile! Want to show off your own plants? Upload your
 													own image and plant information in our “add a plant”
 													section in the navigation bar above!
-													<br/>
-													<br/>
-													<p style={{textAlign: 'center', fontSize: '32px', fontWeight: 'bolder'}}>Welcome to the Botanical Babble family!</p>
+													<br />
+													<br />
+													<p
+														style={{
+															textAlign: 'center',
+															fontSize: '32px',
+															fontWeight: 'bolder',
+														}}>
+														Welcome to the Botanical Babble family!
+													</p>
+
 												</p>
 											</h3>
 										</div>
 										<br />
 									</div>
-										<br/>
-										<br/>
 
+									<br />
+									<br />
 
-									<p style={{fontWeight: 'bolder'}}>{plant.common_name}</p>
 								</Carousel.Caption>
 							</Carousel.Item>
 						);
