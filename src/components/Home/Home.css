@@ -3,10 +3,10 @@ main {
 	text-align: center;
 	background-image: url('../../marble.png');
 	background-size: cover;
-	height: 100vh;
+	height: 91vh;
 }
 
 .rectangle {
-	background-color:rgba(7, 7, 7, 0.253);
+	background-color:rgba(7, 7, 7, 0.7);
 
 }
