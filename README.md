@@ -2,7 +2,7 @@
 
 We're here to share info with the plant community!
 
-You can add new plants and comment!
+You can add new plants, change details about the plants if they're incorrect, and comment!
 
 If you say something you don't mean, you can delete your comments!
 
