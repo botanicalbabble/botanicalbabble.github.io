@@ -2,15 +2,14 @@ import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Axios from 'axios';
-// import { apiUrl } from '../../config';
 import moment from 'moment';
 import './CreateComment.css';
 
 const CreateComment = ({ plant, setPlant }) => {
 
 	//// -- Variables -- ////
-	const url = `https://botanical-babble.herokuapp.com/api`;
 
+	const url = `https://botanical-babble.herokuapp.com/api`;
 	const plantId = plant._id;
 	const commentsUrl = `${url}/comments`;
 	const plantsUrl = `${url}/plants`;
@@ -38,8 +37,6 @@ const CreateComment = ({ plant, setPlant }) => {
 	const handlePostComment = function () {
 		const data = formState;
 		Axios.post(
-			// 'https://botanical-babble.herokuapp.com/api/comments',
-
 			commentsUrl,
 			data
 		)
@@ -56,7 +53,6 @@ const CreateComment = ({ plant, setPlant }) => {
 	const handleDeleteComment = function (event, commentId) {
 		const deleteUrl = `${commentsUrl}/${plantId}/${commentId}`;
 		Axios.delete(
-			// 'https://botanical-babble.herokuapp.com/api/comments',
 			deleteUrl
 		)
 			.then((response) => console.log(response))
@@ -72,10 +68,11 @@ const CreateComment = ({ plant, setPlant }) => {
 
 
 	//// -- Page Content -- ////
+	
 	return (
 		<>
 			<div className='comment-container'>
-				{/* <h2>Plant Babble</h2> */}
+
 				<div>
 					{plant.comments?.map((comment) => {
 						return (
@@ -97,7 +94,6 @@ const CreateComment = ({ plant, setPlant }) => {
 									<li>{comment.comment_body}</li>
 									<li>
 										{moment(comment.createdAt).fromNow()}
-										{/* or we can do the formal format of when the comment was made .format('MMMM Do YYYY, h:mm a') */}
 									</li>
 								</ul>
 							</div>

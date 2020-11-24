@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Axios from 'axios';
 import Carousel from 'react-bootstrap/Carousel';
-// import { apiUrl } from '../../config';
+
 import './Home.css';
 
 const Home = () => {
 	//// -- Variables -- ////
+
 	const url = `https://botanical-babble.herokuapp.com/api/plants`;
 
 	//// -- States -- ////
@@ -13,6 +14,7 @@ const Home = () => {
 	const [data, setData] = useState([]);
 
 	//// -- Functions / Handlers -- ////
+
 
 	//// -- useEffect(s) -- ////
 
@@ -29,22 +31,6 @@ const Home = () => {
 	return (
 		<div>
 			<main>
-				{/* search bar */}
-				{/* <AllPlants path='/' exact /> */}
-				{/* <h1>Welcome to Botanical Babble</h1>
-				<div>
-					<h3>What is Botanical Babble?</h3>
-					<p>
-						Botanical babble is a discussion about your favorite plant, posting
-						information about plants and giving care tips.
-					</p>
-				</div>
-				<div>
-					<h4>Go to the All Plants page to see every plant</h4>
-				</div>
-				<div>
-					<h4>Go to Random Plants to pull up a random plant</h4>
-				</div> */}
 				<div>
 					<Carousel style={{ minHeight: '90vh' }}>
 						{data.map((plant) => {

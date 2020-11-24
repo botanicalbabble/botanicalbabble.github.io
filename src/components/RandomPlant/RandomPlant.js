@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import CreateComment from '../PlantDetails/CreateComment';
+import CreateComment from '../CreateComment/CreateComment';
 import Axios from 'axios';
 import './RandomPlant.css';
 
@@ -125,7 +125,8 @@ const RandomPlant = ({ match }) => {
 				setPlant(data.data);
 				console.log(plant.length);
 			})
-			.catch((error) => {});
+			.catch(console.error);
+		//eslint-disable-next-line
 	}, []);
 
 	if (!plant) {
