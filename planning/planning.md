@@ -83,16 +83,24 @@ a place to look at and comment on plants!
 ## Wins
 
 - the team created a beautiful app
-- everyones strengths played towards the teams success
+- Random plant is hacky...but it works!
+- Bootstrapped React for some good elements
+- everyones strengths played towards the teams success via pair programming
 - we used our tokens when we were stumped
 - we supported each other when we were confused or lost.
 - tons of practice with git
 
 ## Wished we could have gotten...
 
-- proper rendering of the random plant
 - image uploads
 - user auth(to enable profiles and "favorites")
+- proper rendering of the random plant
+
+
+## Hardest Parts
+
+- figuring out our workflow, commits.
+- getting used to different schedules
 
 
 
