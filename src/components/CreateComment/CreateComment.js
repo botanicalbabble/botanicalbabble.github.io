@@ -50,6 +50,8 @@ const CreateComment = ({ plant, setPlant }) => {
 					.catch(console.error);
 			});
 	};
+
+	
 	const handleDeleteComment = function (event, commentId) {
 		const deleteUrl = `${commentsUrl}/${plantId}/${commentId}`;
 		Axios.delete(
